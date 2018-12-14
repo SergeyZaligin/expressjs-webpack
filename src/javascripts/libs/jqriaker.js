@@ -1,4 +1,4 @@
-const fetch = () => {
+const fetch = (url, type, headers, data, credentials) => {
 
 };
 
