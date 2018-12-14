@@ -1,5 +1,6 @@
 extends ../layout
 block content
+  ul.message
   div.container
     h1 Вход на сайт #{user.nickname}
     form(method="post", action="/auth/login", id="login-form")

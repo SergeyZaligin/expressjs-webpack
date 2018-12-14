@@ -11796,14 +11796,12 @@ var login = function login(selector) {
   if (loginSelector) {
     loginSelector.addEventListener('click', function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-        var email, password, response, json;
+        var email, password, response, json, msg;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 e.preventDefault();
-                //   const formEntries = new FormData(loginSelector).entries();
-                //   const dataForm = JSON.stringify(Object.assign(...Array.from(formEntries, ([x, y]) => ({[x]: y}))));
 
                 email = document.querySelector('[type="email"]').value;
                 password = document.querySelector('[type="password"]').value;
@@ -11831,13 +11829,13 @@ var login = function login(selector) {
 
               case 10:
                 json = _context.sent;
+                msg = document.querySelector('.message');
 
-                // const msg = document.querySelector('.message');
-                // msg.innerHTML = json.message;
+                msg.innerHTML = json.message;
                 // window.location = '/auth/login';
                 console.log(json);
 
-              case 12:
+              case 14:
               case 'end':
                 return _context.stop();
             }
