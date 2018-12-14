@@ -7,8 +7,7 @@ const login = (selector) => {
 
       const email = document.querySelector('[type="email"]').value;
       const password = document.querySelector('[type="password"]').value;
-      console.log('', email);
-      console.log('password', password);
+
       const response = await fetch('/auth/login', {
         method: 'post',
         headers: {
@@ -26,7 +25,6 @@ const login = (selector) => {
       const msg = document.querySelector('.message');
       msg.innerHTML = json.message;
       // window.location = '/auth/login';
-      console.log(json);
     });
   } else {
     return null;

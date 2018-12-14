@@ -11805,10 +11805,7 @@ var login = function login(selector) {
 
                 email = document.querySelector('[type="email"]').value;
                 password = document.querySelector('[type="password"]').value;
-
-                console.log('', email);
-                console.log('password', password);
-                _context.next = 7;
+                _context.next = 5;
                 return fetch('/auth/login', {
                   method: 'post',
                   headers: {
@@ -11822,20 +11819,19 @@ var login = function login(selector) {
                   })
                 });
 
-              case 7:
+              case 5:
                 response = _context.sent;
-                _context.next = 10;
+                _context.next = 8;
                 return response.json();
 
-              case 10:
+              case 8:
                 json = _context.sent;
                 msg = document.querySelector('.message');
 
                 msg.innerHTML = json.message;
                 // window.location = '/auth/login';
-                console.log(json);
 
-              case 14:
+              case 11:
               case 'end':
                 return _context.stop();
             }
@@ -11919,9 +11915,8 @@ var signup = function signup(selector) {
 
                 msg.innerHTML = json.message;
                 // window.location = '/auth/registration';
-                console.log(json);
 
-              case 12:
+              case 11:
               case 'end':
                 return _context.stop();
             }

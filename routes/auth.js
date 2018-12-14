@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const controller = require('../controllers/auth');
-//const guardRouter = require('../middleware/guardRouter');
+// const guardRouter = require('../middleware/guardRouter');
 
 router.get('/login', controller.login);
 router.post('/login', controller.checkLogin);

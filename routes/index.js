@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const controller = require('../controllers/index');
 
 router.get('/favicon.ico', (req, res) => res.status(204));

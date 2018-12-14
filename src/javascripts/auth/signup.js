@@ -20,7 +20,6 @@ const signup = (selector) => {
       const msg = document.querySelector('.message');
       msg.innerHTML = json.message;
       // window.location = '/auth/registration';
-      console.log(json);
     });
   } else {
     return null;
