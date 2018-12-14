@@ -11766,11 +11766,10 @@ var _login2 = _interopRequireDefault(_login);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SIGNUP_SELECTOR = '#signup-form';
-// const LOGIN_SELECTOR = '#login-form';
-var LOGIN_SELECTOR2 = '[type="submit"]';
+var LOGIN_SELECTOR = '#login-submit-btn';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
-(0, _login2.default)(LOGIN_SELECTOR2);
+(0, _login2.default)(LOGIN_SELECTOR);
 
 /***/ }),
 
@@ -11894,7 +11893,9 @@ var signup = function signup(selector) {
 
                   return _defineProperty({}, x, y);
                 }))));
-                _context.next = 5;
+
+                console.log('dataForm', dataForm);
+                _context.next = 6;
                 return fetch('/auth/registration', {
                   method: 'post',
                   headers: {
@@ -11904,19 +11905,24 @@ var signup = function signup(selector) {
                   body: dataForm
                 });
 
-              case 5:
+              case 6:
                 response = _context.sent;
-                _context.next = 8;
+                _context.next = 9;
                 return response.json();
 
-              case 8:
+              case 9:
                 json = _context.sent;
                 msg = document.querySelector('.message');
 
                 msg.innerHTML = json.message;
+                if (json.message) {
+                  setTimeout(function () {
+                    msg.innerHTML = '<a href=\'/auth/login\'>Войти на сайт</a>';
+                  }, 5000);
+                }
                 // window.location = '/auth/registration';
 
-              case 11:
+              case 13:
               case 'end':
                 return _context.stop();
             }
