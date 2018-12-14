@@ -6,7 +6,7 @@ const signup = (selector) => {
       e.preventDefault();
       const formEntries = new FormData(signupSelector).entries();
       const dataForm = JSON.stringify(Object.assign(...Array.from(formEntries, ([x, y]) => ({[x]: y}))));
-      console.log('dataForm', dataForm);
+
       const response = await fetch('/auth/registration', {
         method: 'post',
         headers: {
@@ -23,7 +23,7 @@ const signup = (selector) => {
       if (json.message) {
         setTimeout(()=>{
           msg.innerHTML = '<a href=\'/auth/login\'>Войти на сайт</a>';
-        }, 5000);
+        }, 3000);
       }
       // window.location = '/auth/registration';
     });

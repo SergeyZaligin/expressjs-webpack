@@ -11893,9 +11893,7 @@ var signup = function signup(selector) {
 
                   return _defineProperty({}, x, y);
                 }))));
-
-                console.log('dataForm', dataForm);
-                _context.next = 6;
+                _context.next = 5;
                 return fetch('/auth/registration', {
                   method: 'post',
                   headers: {
@@ -11905,12 +11903,12 @@ var signup = function signup(selector) {
                   body: dataForm
                 });
 
-              case 6:
+              case 5:
                 response = _context.sent;
-                _context.next = 9;
+                _context.next = 8;
                 return response.json();
 
-              case 9:
+              case 8:
                 json = _context.sent;
                 msg = document.querySelector('.message');
 
@@ -11918,11 +11916,11 @@ var signup = function signup(selector) {
                 if (json.message) {
                   setTimeout(function () {
                     msg.innerHTML = '<a href=\'/auth/login\'>Войти на сайт</a>';
-                  }, 5000);
+                  }, 3000);
                 }
                 // window.location = '/auth/registration';
 
-              case 13:
+              case 12:
               case 'end':
                 return _context.stop();
             }
