@@ -1,32 +1,26 @@
 const signup = (selector) => {
-  selector = document.querySelector(selector);
-  if (selector) {
-    selector.addEventListener('submit', (e) => {
+  const signupSelector = document.querySelector(selector);
+
+  if (signupSelector) {
+    signupSelector.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const formEntries = new FormData(selector).entries();
+      const formEntries = new FormData(signupSelector).entries();
       const dataForm = JSON.stringify(Object.assign(...Array.from(formEntries, ([x, y]) => ({[x]: y}))));
 
-      fetch('/auth/registration', {
+      const response = await fetch('/auth/registration', {
         method: 'post',
         headers: {
           'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json',
         },
         body: dataForm,
-      }).then(function(res) {
-        return res.json();
-      }).then(function(data) {
-        const msg = document.querySelector('.message');
-
-        // msg.innerHTML = data.message;
-        data.message.forEach(function(item, i) {
-          const newLi = document.createElement('li');
-          newLi.innerHTML = `<li>${i}. ${item}</li>`;
-          msg.appendChild(newLi);
-        });
-        // window.location = "/auth/registration";
-        console.log(data);
       });
+
+      const json = await response.json();
+      const msg = document.querySelector('.message');
+      msg.innerHTML = json.message;
+      // window.location = '/auth/registration';
+      console.log(json);
     });
   } else {
     return null;

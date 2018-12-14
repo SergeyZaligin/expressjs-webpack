@@ -11787,42 +11787,63 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var signup = function signup(selector) {
-  selector = document.querySelector(selector);
-  if (selector) {
-    selector.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var formEntries = new FormData(selector).entries();
-      var dataForm = JSON.stringify(Object.assign.apply(Object, _toConsumableArray(Array.from(formEntries, function (_ref) {
-        var _ref2 = _slicedToArray(_ref, 2),
-            x = _ref2[0],
-            y = _ref2[1];
+  var signupSelector = document.querySelector(selector);
 
-        return _defineProperty({}, x, y);
-      }))));
+  if (signupSelector) {
+    signupSelector.addEventListener('submit', function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+        var formEntries, dataForm, response, json, msg;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault();
+                formEntries = new FormData(signupSelector).entries();
+                dataForm = JSON.stringify(Object.assign.apply(Object, _toConsumableArray(Array.from(formEntries, function (_ref2) {
+                  var _ref3 = _slicedToArray(_ref2, 2),
+                      x = _ref3[0],
+                      y = _ref3[1];
 
-      fetch('/auth/registration', {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: dataForm
-      }).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        var msg = document.querySelector('.message');
+                  return _defineProperty({}, x, y);
+                }))));
+                _context.next = 5;
+                return fetch('/auth/registration', {
+                  method: 'post',
+                  headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                  },
+                  body: dataForm
+                });
 
-        // msg.innerHTML = data.message;
-        data.message.forEach(function (item, i) {
-          var newLi = document.createElement('li');
-          newLi.innerHTML = '<li>' + i + '. ' + item + '</li>';
-          msg.appendChild(newLi);
-        });
-        // window.location = "/auth/registration";
-        console.log(data);
-      });
-    });
+              case 5:
+                response = _context.sent;
+                _context.next = 8;
+                return response.json();
+
+              case 8:
+                json = _context.sent;
+                msg = document.querySelector('.message');
+
+                msg.innerHTML = json.message;
+                // window.location = '/auth/registration';
+                console.log(json);
+
+              case 12:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, undefined);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
   } else {
     return null;
   }
