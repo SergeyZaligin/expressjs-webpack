@@ -12,8 +12,10 @@ module.exports.checkLogin = async (req, res) => {
     const passwordResult = bcryptjs.compareSync(req.body.password, candidate.password);
     if (passwordResult) {
       req.session.nickname = candidate.nickname;
-      req.session.userId = candidate._id;
+      req.session.id = candidate._id;
       req.session.role = candidate.role;
+      console.log('REQ SESSION', req.session);
+
       res.status(200).json({
         message: 'Вы вошли на сайт.',
       });

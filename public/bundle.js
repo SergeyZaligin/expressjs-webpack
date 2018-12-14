@@ -11759,11 +11759,101 @@ var _signup = __webpack_require__(/*! ./javascripts/auth/signup */ "./src/javasc
 
 var _signup2 = _interopRequireDefault(_signup);
 
+var _login = __webpack_require__(/*! ./javascripts/auth/login */ "./src/javascripts/auth/login.js");
+
+var _login2 = _interopRequireDefault(_login);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SIGNUP_SELECTOR = '#signup-form';
+// const LOGIN_SELECTOR = '#login-form';
+var LOGIN_SELECTOR2 = '[type="submit"]';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
+(0, _login2.default)(LOGIN_SELECTOR2);
+
+/***/ }),
+
+/***/ "./src/javascripts/auth/login.js":
+/*!***************************************!*\
+  !*** ./src/javascripts/auth/login.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var login = function login(selector) {
+  var loginSelector = document.querySelector(selector);
+
+  if (loginSelector) {
+    loginSelector.addEventListener('click', function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+        var email, password, response, json;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault();
+                //   const formEntries = new FormData(loginSelector).entries();
+                //   const dataForm = JSON.stringify(Object.assign(...Array.from(formEntries, ([x, y]) => ({[x]: y}))));
+
+                email = document.querySelector('[type="email"]').value;
+                password = document.querySelector('[type="password"]').value;
+
+                console.log('', email);
+                console.log('password', password);
+                _context.next = 7;
+                return fetch('/auth/login', {
+                  method: 'post',
+                  headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    password: password
+                  })
+                });
+
+              case 7:
+                response = _context.sent;
+                _context.next = 10;
+                return response.json();
+
+              case 10:
+                json = _context.sent;
+
+                // const msg = document.querySelector('.message');
+                // msg.innerHTML = json.message;
+                // window.location = '/auth/login';
+                console.log(json);
+
+              case 12:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, undefined);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+  } else {
+    return null;
+  }
+};
+
+exports.default = login;
 
 /***/ }),
 

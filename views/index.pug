@@ -3,6 +3,6 @@ extends layout
 block content
   div.container
     h1= title
-    p Welcome to Express template
+    p Welcome to Express #{user.nickname}
     a(href="/admin") Админка
     a(href="/auth/logout") Выйти
