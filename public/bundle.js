@@ -11817,6 +11817,7 @@ var login = function login(selector) {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                   },
+                  credentials: 'same-origin',
                   body: JSON.stringify({
                     email: email,
                     password: password

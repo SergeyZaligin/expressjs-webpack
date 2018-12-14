@@ -1,7 +1,7 @@
 extends ../layout
 block content
   div.container
-    h1 Вход на сайт
+    h1 Вход на сайт #{user.nickname}
     form(method="post", action="/auth/login", id="login-form")
       div.form-control
         label(for="email") Email

@@ -52,11 +52,20 @@ module.exports.logout = (req, res) => {
  * @param {*} res
  */
 module.exports.login = (req, res) => {
+  const nickname = req.session.nickname;
+  const id = req.session.id;
+  const role = req.session.role;
+
   res.render('auth/login', {
     title: 'Вход на сайт',
     meta: {
       description: 'Вход на сайт',
       keywords: 'Вход на сайт',
+    },
+    user: {
+      id,
+      nickname,
+      role,
     },
   });
 };
