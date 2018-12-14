@@ -1,12 +1,13 @@
+import {
+  serialize,
+} from '../libs/jDi';
+
 const login = (selector) => {
   const loginSelector = document.querySelector(selector);
 
   if (loginSelector) {
-    loginSelector.addEventListener('click', async (e) => {
+    loginSelector.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      const email = document.querySelector('[type="email"]').value;
-      const password = document.querySelector('[type="password"]').value;
 
       const response = await fetch('/auth/login', {
         method: 'post',
@@ -15,15 +16,17 @@ const login = (selector) => {
           'Content-Type': 'application/json',
         },
         credentials: 'same-origin',
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: serialize(loginSelector),
       });
 
       const json = await response.json();
       const msg = document.querySelector('.message');
       msg.innerHTML = json.message;
+      if (json.message) {
+        setTimeout(() => {
+          msg.innerHTML = '<a href=\'/auth/login\'>На главную</a>';
+        }, 3000);
+      }
       // window.location = '/auth/login';
     });
   } else {

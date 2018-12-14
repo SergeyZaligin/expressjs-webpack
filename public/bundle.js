@@ -11766,7 +11766,7 @@ var _login2 = _interopRequireDefault(_login);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SIGNUP_SELECTOR = '#signup-form';
-var LOGIN_SELECTOR = '#login-submit-btn';
+var LOGIN_SELECTOR = '#login-form';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
 (0, _login2.default)(LOGIN_SELECTOR);
@@ -11787,24 +11787,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _jDi = __webpack_require__(/*! ../libs/jDi */ "./src/javascripts/libs/jDi.js");
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var login = function login(selector) {
   var loginSelector = document.querySelector(selector);
 
   if (loginSelector) {
-    loginSelector.addEventListener('click', function () {
+    loginSelector.addEventListener('submit', function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-        var email, password, response, json, msg;
+        var response, json, msg;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 e.preventDefault();
 
-                email = document.querySelector('[type="email"]').value;
-                password = document.querySelector('[type="password"]').value;
-                _context.next = 5;
+                _context.next = 3;
                 return fetch('/auth/login', {
                   method: 'post',
                   headers: {
@@ -11812,25 +11812,27 @@ var login = function login(selector) {
                     'Content-Type': 'application/json'
                   },
                   credentials: 'same-origin',
-                  body: JSON.stringify({
-                    email: email,
-                    password: password
-                  })
+                  body: (0, _jDi.serialize)(loginSelector)
                 });
 
-              case 5:
+              case 3:
                 response = _context.sent;
-                _context.next = 8;
+                _context.next = 6;
                 return response.json();
 
-              case 8:
+              case 6:
                 json = _context.sent;
                 msg = document.querySelector('.message');
 
                 msg.innerHTML = json.message;
+                if (json.message) {
+                  setTimeout(function () {
+                    msg.innerHTML = '<a href=\'/auth/login\'>На главную</a>';
+                  }, 3000);
+                }
                 // window.location = '/auth/login';
 
-              case 11:
+              case 10:
               case 'end':
                 return _context.stop();
             }

@@ -3,7 +3,7 @@ import signup from './javascripts/auth/signup';
 import login from './javascripts/auth/login';
 
 const SIGNUP_SELECTOR = '#signup-form';
-const LOGIN_SELECTOR = '#login-submit-btn';
+const LOGIN_SELECTOR = '#login-form';
 
 signup(SIGNUP_SELECTOR);
 login(LOGIN_SELECTOR);
