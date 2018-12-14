@@ -43,6 +43,15 @@ app.use(favicon(path.join(__dirname, '/public/favicon.ico')));
 app.use(staticAsset(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    url: process.env.MONGO_URL,
+  }),
+}));
+
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
