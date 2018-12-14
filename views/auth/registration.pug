@@ -1,0 +1,52 @@
+extends ../layout
+block content
+  ul.message
+  div.container
+    h1 Зарегистрироваться
+    form(method="post", action="/auth/registration")#signup-form
+      div.form-control
+        label(for="nickname") Имя на сайте
+        input(id="nickname", type="text", name="nickname")
+      div.form-control
+        label(for="email") Email
+        input(id="email", type="text", name="email")
+      div.form-control
+        label(for="password") Пароль
+        input(id="password", type="password", name="password")
+      div.form-control
+        label(for="repassword") Повторить пароль
+        input(id="repassword", type="password", name="repassword")
+      div.form-control
+        label(for="role") Роль на сайте
+        select(id="role", name="role")
+          option(value="register", checked) Пользователь  
+          option(value="aspirant") Соискатель
+          option(value="recruter") Агентство
+      div.form-control
+        button(type="submit") Зарегистрироваться
+//- extends ../layout
+//- block content
+//-   div.container
+//-     p.message
+//-     h1 Зарегистрироваться
+//-     form(method="post", action="/auth/registration")#signup-form
+//-       div.form-control
+//-         label(for="nickname") Имя на сайте
+//-         input(id="nickname", type="text", name="nickname", required="true")
+//-       div.form-control
+//-         label(for="email") Email
+//-         input(id="email", type="email", name="email", required="true")
+//-       div.form-control
+//-         label(for="password") Пароль
+//-         input(id="password", type="password", name="password", required="true")
+//-       div.form-control
+//-         label(for="repassword") Повторить пароль
+//-         input(id="repassword", type="password", name="repassword", required="true")
+//-       div.form-control
+//-         label(for="role") Роль на сайте
+//-         select(id="role", name="role")
+//-           option(value="register", checked) Пользователь  
+//-           option(value="aspirant") Соискатель
+//-           option(value="recruter") Агентство
+//-       div.form-control
+//-         button(type="submit") Зарегистрироваться

@@ -1,5 +1,8 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    h1= title
+    p Welcome to Express template
+    a(href="/admin") Админка
+    a(href="/auth/logout") Выйти

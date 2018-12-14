@@ -1,0 +1,28 @@
+extends ../../layout
+
+block content
+  div.container
+    h1= title
+    form(method="post", action="/admin/post/category/add", id="article-category-add-form")
+      div.form-control
+        label(for="published") Опубликовано
+        input(id="published", type="radio", name="visible", value="1")
+        label(for="nopublished") Снято с публикации
+        input(id="nopublished", type="radio", name="visible", value="0", checked="true")
+      div.form-control
+        label(for="name") Название категории
+        input(id="name", type="text", name="name")
+      div.form-control
+        label(for="slug") Алиас
+        input(id="slug", type="text", name="slug")
+      div.form-control
+        label(for="description") Meta description
+        textarea(id="description", name="description")
+      div.form-control
+        label(for="keywords") Meta keywords
+        textarea(id="keywords", name="keywords")
+      div.form-control
+        label(for="sort") Сортировка
+        input(id="sort", type="number", name="sort", value="0")
+      div.form-control
+        button(type="submit") Добавить категорию

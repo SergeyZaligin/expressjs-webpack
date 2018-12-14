@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div.container
+    h1= title
+    p Welcome to admin panel #{user.nickname}
+    ul
+      li
+        a(href="/") Главная
+      li
+        a(href="/auth/logout") Выйти
+      li
+        a(href="/admin/post/list") Все статьи
+      li
+        a(href="/admin/post/add") Добавить статью
+      li
+        a(href="/admin/post/update") Обновить статью
+      li
+        a(href="/admin/post/category/list") Все категории
+      li
+        a(href="/admin/post/category/add") Добавить категорию к статьям
+      li
+        a(href="/admin/post/category/update") Обновить категорию к статьям

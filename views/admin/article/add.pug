@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+  div.container
+    h1= title
+    form(method="post", action="/admin/post/add", id="article-add-form")
+      div.form-control
+        label(for="published") Опубликовано
+        input(id="published", type="radio", name="visible", value="1")
+        label(for="nopublished") Снято с публикации
+        input(id="nopublished", type="radio", name="visible", value="0", checked="true")
+      div.form-control
+        label(for="name") Название статьи
+        input(id="name", type="text", name="name")
+      div.form-control
+        label(for="slug") Алиас
+        input(id="slug", type="text", name="slug")
+      div.form-control
+        label(for="description") Meta description
+        textarea(id="description", name="description")
+      div.form-control
+        label(for="keywords") Meta keywords
+        textarea(id="keywords", name="keywords")
+      div.form-control
+        label(for="seopreview") Seo анонс
+        textarea(id="seopreview", name="seopreview")
+      div.form-control
+        label(for="preview") Анонс
+        textarea(id="preview", name="preview")
+      div.form-control
+        label(for="text") Текст
+        textarea(id="text", name="text")
+      div.form-control
+        label(for="category") Определить в категорию
+        select(id="category", name="category")
+          option(value="0") категория
+      div.form-control
+        label(for="sort") Сортировка
+        input(id="sort", type="number", name="sort", value="0")
+      div.form-control
+        button(type="submit") Добавить категорию
