@@ -1,12 +1,6 @@
 import './stylesheets/main.scss';
+import signup from './javascripts/auth/signup';
 
-async function foo() {
-  console.log('async working!');
-}
+const SIGNUP_SELECTOR = '#signup-form';
 
-async function bar() {
-  await foo();
-  console.log('after foo');
-}
-
-bar();
+signup(SIGNUP_SELECTOR);

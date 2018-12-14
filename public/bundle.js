@@ -11753,57 +11753,82 @@ module.exports = g;
 "use strict";
 
 
-var foo = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            console.log('async working!');
-
-          case 1:
-          case 'end':
-            return _context.stop();
-        }
-      }
-    }, _callee, this);
-  }));
-
-  return function foo() {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var bar = function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.next = 2;
-            return foo();
-
-          case 2:
-            console.log('after foo');
-
-          case 3:
-          case 'end':
-            return _context2.stop();
-        }
-      }
-    }, _callee2, this);
-  }));
-
-  return function bar() {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
 __webpack_require__(/*! ./stylesheets/main.scss */ "./src/stylesheets/main.scss");
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+var _signup = __webpack_require__(/*! ./javascripts/auth/signup */ "./src/javascripts/auth/signup.js");
 
-bar();
+var _signup2 = _interopRequireDefault(_signup);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SIGNUP_SELECTOR = '#signup-form';
+
+(0, _signup2.default)(SIGNUP_SELECTOR);
+
+/***/ }),
+
+/***/ "./src/javascripts/auth/signup.js":
+/*!****************************************!*\
+  !*** ./src/javascripts/auth/signup.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var signup = function signup(selector) {
+  selector = document.querySelector(selector);
+  if (selector) {
+    selector.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var formEntries = new FormData(selector).entries();
+      var dataForm = JSON.stringify(Object.assign.apply(Object, _toConsumableArray(Array.from(formEntries, function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            x = _ref2[0],
+            y = _ref2[1];
+
+        return _defineProperty({}, x, y);
+      }))));
+
+      fetch('/auth/registration', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body: dataForm
+      }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        var msg = document.querySelector('.message');
+
+        // msg.innerHTML = data.message;
+        data.message.forEach(function (item, i) {
+          var newLi = document.createElement('li');
+          newLi.innerHTML = '<li>' + i + '. ' + item + '</li>';
+          msg.appendChild(newLi);
+        });
+        // window.location = "/auth/registration";
+        console.log(data);
+      });
+    });
+  } else {
+    return null;
+  }
+};
+
+exports.default = signup;
 
 /***/ }),
 
