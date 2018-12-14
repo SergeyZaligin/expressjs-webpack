@@ -1,0 +1,25 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "node": true,
+        "es6": true,
+        "jest": true,
+        "browser": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "globals": {
+        "AppError": true,
+        "SwaggerEditor": false
+    },
+    "extends": ["google"],
+    "rules": {
+        "no-console": 0,
+        "object-curly-spacing": 0,
+        "max-len": 0,
+        "require-jsdoc": 0,
+        "no-invalid-this": 0,
+        "linebreak-style": 0
+    }
+}

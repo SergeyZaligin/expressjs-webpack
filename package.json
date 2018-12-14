@@ -1,0 +1,47 @@
+{
+  "name": "genwp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "wpdev": "webpack --mode development --watch",
+    "wpserver": "webpack-dev-server",
+    "wpprod": "webpack --mode production"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "debug": "^4.1.0",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.1",
+    "morgan": "^1.9.1",
+    "pug": "^2.0.3",
+    "serve-favicon": "^2.5.0",
+    "dotenv": "^6.1.0",
+    "static-asset": "^0.6.0",
+    "transliterate-cyrillic-text-to-latin-url": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "7",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.0.0",
+    "eslint": "^5.10.0",
+    "eslint-config-google": "^0.11.0",
+    "eslint-loader": "^2.1.1",
+    "file-loader": "^2.0.0",
+    "imagemin-webpack-plugin": "^2.3.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "nodemon": "^1.18.8"
+  }
+}
