@@ -1,0 +1,8 @@
+div(class="upload-image-form")
+  strong Добавить изображение
+  form(method="post", id="upload-image-form", enctype="multipart/form-data")
+    div.form-control
+      label(for="file") Выбрать файл
+      input(id="file", type="file", name="file")
+    div.form-control
+      button(type="submit") Загрузить файл

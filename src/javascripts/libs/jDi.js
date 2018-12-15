@@ -11,6 +11,5 @@ const serialize = (formSelector) => {
 };
 
 export {
-  fetch,
   serialize,
 };

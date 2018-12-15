@@ -11763,13 +11763,19 @@ var _login = __webpack_require__(/*! ./javascripts/auth/login */ "./src/javascri
 
 var _login2 = _interopRequireDefault(_login);
 
+var _uploadImage = __webpack_require__(/*! ./javascripts/partial/form/upload-image */ "./src/javascripts/partial/form/upload-image.js");
+
+var _uploadImage2 = _interopRequireDefault(_uploadImage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SIGNUP_SELECTOR = '#signup-form';
 var LOGIN_SELECTOR = '#login-form';
+var UPLOAD_IMAGE_SELECTOR = '#upload-image-form';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
 (0, _login2.default)(LOGIN_SELECTOR);
+(0, _uploadImage2.default)(UPLOAD_IMAGE_SELECTOR);
 
 /***/ }),
 
@@ -11968,8 +11974,87 @@ var serialize = function serialize(formSelector) {
   }))));
 };
 
-exports.fetch = fetch;
 exports.serialize = serialize;
+
+/***/ }),
+
+/***/ "./src/javascripts/partial/form/upload-image.js":
+/*!******************************************************!*\
+  !*** ./src/javascripts/partial/form/upload-image.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var uploadImage = function uploadImage(selector) {
+  var uploadImageSelector = document.querySelector(selector);
+
+  if (uploadImageSelector) {
+    uploadImageSelector.addEventListener('submit', function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+        var formEntries;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault();
+                formEntries = new FormData(this);
+
+                console.log(this);
+                _context.next = 5;
+                return fetch('/uploads/image', {
+                  method: 'post',
+                  body: formEntries
+                });
+
+              case 5:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+    // console.log('img', response);
+    //   const response = await fetch('/upload/image', {
+    //     method: 'post',
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //     body: formEntries,
+    //   });
+    //   console.log('img', response);
+    //   const blob = await response.FormData();
+    //   console.log('blob', blob);
+    // const json = await response.formData();
+    // console.log('img', json);
+    //   const msg = document.querySelector('.message');
+    //   msg.innerHTML = json.message;
+    //   if (json.message) {
+    //     setTimeout(() => {
+    //       msg.innerHTML = '<a href=\'/auth/login\'>На главную</a>';
+    //     }, 3000);
+    //   }
+    // window.location = '/auth/login';
+    );
+  } else {
+    return null;
+  }
+};
+
+exports.default = uploadImage;
 
 /***/ }),
 
