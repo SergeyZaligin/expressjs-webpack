@@ -3,6 +3,7 @@ const router = express.Router();
 
 const controller = require('../controllers/admin');
 const controllerAdminArticleCategory = require('../controllers/admin/article/category');
+const controllerAdminArticle = require('../controllers/admin/article');
 
 const guardRouter = require('../middleware/guardRouter');
 
@@ -12,23 +13,23 @@ router.get('/', guardRouter.guardAdminRoutes, controller.index);
 // Article
 router.get('/post/list',
     guardRouter.guardAdminRoutes,
-    controller.listPostPage
+    controllerAdminArticle.listPostPage
 );
 router.get('/post/add',
     guardRouter.guardAdminRoutes,
-    controller.addPostPage
+    controllerAdminArticle.addPostPage
 );
 router.post('/post/add',
     guardRouter.guardAdminRoutes,
-    controller.addPost
+    controllerAdminArticle.addPost
 );
 router.get('/post/update',
     guardRouter.guardAdminRoutes,
-    controller.updatePostPage
+    controllerAdminArticle.updatePostPage
 );
 router.put('/post/update',
     guardRouter.guardAdminRoutes,
-    controller.updatePost
+    controllerAdminArticle.updatePost
 );
 
 // Article category
