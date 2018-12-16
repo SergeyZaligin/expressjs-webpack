@@ -1,18 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../middleware/upload');
 
-const multer = require('multer');
-
-const upload = multer({
-  dest: 'uploads/',
-});
-
-// POST is add
 router.post('/image', upload.single('file'), function(req, res, next) {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-  next();
+  console.log(req.file);
+  console.log(req.body);
+  res.status(200).json({
+    message: 'Картинка загружена на сервер в папку uploads.',
+  });
 });
-
 
 module.exports = router;
