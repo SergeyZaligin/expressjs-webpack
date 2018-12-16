@@ -26,7 +26,8 @@
     "pug": "^2.0.3",
     "serve-favicon": "^2.5.0",
     "static-asset": "^0.6.0",
-    "transliterate-cyrillic-text-to-latin-url": "^1.1.0"
+    "transliterate-cyrillic-text-to-latin-url": "^1.1.0",
+    "validator": "^10.9.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
