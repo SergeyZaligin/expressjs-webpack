@@ -12,7 +12,7 @@ module.exports.checkLogin = async (req, res) => {
     const passwordResult = bcryptjs.compareSync(req.body.password, candidate.password);
     if (passwordResult) {
       req.session.nickname = candidate.nickname;
-      req.session.id = candidate._id;
+      req.session.userId = candidate._id;
       req.session.role = candidate.role;
       console.log('REQ SESSION', req.session);
 
@@ -53,7 +53,7 @@ module.exports.logout = (req, res) => {
  */
 module.exports.login = (req, res) => {
   const nickname = req.session.nickname;
-  const id = req.session.id;
+  const userId = req.session.userId;
   const role = req.session.role;
 
   res.render('auth/login', {
@@ -63,7 +63,7 @@ module.exports.login = (req, res) => {
       keywords: 'Вход на сайт',
     },
     user: {
-      id,
+      userId,
       nickname,
       role,
     },

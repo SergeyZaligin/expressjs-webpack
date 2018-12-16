@@ -11767,15 +11767,115 @@ var _uploadImage = __webpack_require__(/*! ./javascripts/partial/form/upload-ima
 
 var _uploadImage2 = _interopRequireDefault(_uploadImage);
 
+var _category = __webpack_require__(/*! ./javascripts/admin/article/category/category */ "./src/javascripts/admin/article/category/category.js");
+
+var _category2 = _interopRequireDefault(_category);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SIGNUP_SELECTOR = '#signup-form';
 var LOGIN_SELECTOR = '#login-form';
 var UPLOAD_IMAGE_SELECTOR = '#upload-image-form';
+var ARTICLE_CATEGORY_SELECTOR = '#article-category-add-form';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
 (0, _login2.default)(LOGIN_SELECTOR);
 (0, _uploadImage2.default)(UPLOAD_IMAGE_SELECTOR);
+
+// Category
+var CategoryObj = new _category2.default(ARTICLE_CATEGORY_SELECTOR);
+CategoryObj.add();
+
+/***/ }),
+
+/***/ "./src/javascripts/admin/article/category/category.js":
+/*!************************************************************!*\
+  !*** ./src/javascripts/admin/article/category/category.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jDi = __webpack_require__(/*! ../../../libs/jDi */ "./src/javascripts/libs/jDi.js");
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Category = function () {
+  function Category(element) {
+    _classCallCheck(this, Category);
+
+    this.selector = document.querySelector(element);
+  }
+
+  _createClass(Category, [{
+    key: 'add',
+    value: function add() {
+      this.selector.addEventListener('submit', function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+          var response, json;
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  e.preventDefault();
+                  console.log((0, _jDi.serialize)(this));
+                  _context.next = 4;
+                  return fetch('/admin/post/category/add', {
+                    method: 'post',
+                    headers: {
+                      'Accept': 'application/json, text/plain, */*',
+                      'Content-Type': 'application/json'
+                    },
+                    body: (0, _jDi.serialize)(this)
+                  });
+
+                case 4:
+                  response = _context.sent;
+                  _context.next = 7;
+                  return response.json();
+
+                case 7:
+                  json = _context.sent;
+
+                  console.log(json);
+                  // const msg = document.querySelector('.message');
+                  // msg.innerHTML = json.message;
+                  // if (json.message) {
+                  //   setTimeout(() => {
+                  //     msg.innerHTML = '<a href=\'/auth/category\'>На главную</a>';
+                  //   }, 3000);
+                  // }
+                  // window.location = '/auth/category';
+
+                case 9:
+                case 'end':
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
+    }
+  }]);
+
+  return Category;
+}();
+
+exports.default = Category;
 
 /***/ }),
 

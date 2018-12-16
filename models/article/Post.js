@@ -4,58 +4,58 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   visible: {
     type: Boolean,
-    default: 1
+    default: 1,
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   slug: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   description: {
     type: String,
-    default: ''
+    default: '',
   },
   keywords: {
     type: String,
-    default: ''
+    default: '',
   },
   seoPreview: {
     type: String,
-    default: ''
+    default: '',
   },
   preview: {
     type: String,
-    default: ''
+    default: '',
   },
   text: {
     type: String,
-    default: ''
+    default: '',
   },
   category: {
     ref: 'Category',
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
   },
   user: {
     ref: 'User',
-    type: Schema.Types.ObjectId
+    type: Schema.Types.ObjectId,
   },
   sort: {
     type: Number,
-    default: 1
+    default: 1,
   },
   imageThubnail: {
     type: String,
-    default: ''
+    default: '',
   },
 }, {
   timestamps: {
     createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
-})
+    updatedAt: 'updated_at',
+  },
+});
 
 module.exports = mongoose.model('Post', PostSchema);

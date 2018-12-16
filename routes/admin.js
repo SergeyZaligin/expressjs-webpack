@@ -14,10 +14,10 @@ router.get('/post/update', guardRouter.guardAdminRoutes, controller.updatePostPa
 router.put('/post/update', guardRouter.guardAdminRoutes, controller.updatePost);
 
 // Article category
-router.get('/post/category/list', guardRouter.guardAdminRoutes, controller.listPostCategoryPage);
-router.get('/post/category/add', guardRouter.guardAdminRoutes, controller.addPostCategoryPage);
-router.post('/post/category/add', guardRouter.guardAdminRoutes, controller.addPostCategory);
-router.get('/post/category/update', guardRouter.guardAdminRoutes, controller.updatePostCategoryPage);
-router.put('/post/category/update', guardRouter.guardAdminRoutes, controller.updatePostCategory);
+router.get('/post/category/list', guardRouter.guardAdminRoutes, controller.listCategoryPostPage);
+router.get('/post/category/add', guardRouter.guardAdminRoutes, controller.addCategoryPostPage);
+router.post('/post/category/add', guardRouter.guardAdminRoutes, controller.addCategoryPost);
+router.get('/post/category/update', guardRouter.guardAdminRoutes, controller.updateCategoryPostPage);
+router.put('/post/category/update', guardRouter.guardAdminRoutes, controller.updateCategoryPost);
 
 module.exports = router;
