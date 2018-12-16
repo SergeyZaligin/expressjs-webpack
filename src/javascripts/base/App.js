@@ -1,16 +1,19 @@
 import {
   serialize,
-} from '../../../libs/jDi';
+} from '../libs/jDi';
 
-class Category {
-  constructor(element) {
-    this.selector = document.querySelector(element);
+class App {
+  constructor() {
+    this.selector = null;
+    this.url = '';
   }
-  add() {
+  //  '/admin/post/category/add'
+  add(element) {
+    this.selector = document.querySelector(element);
     this.selector.addEventListener('submit', async function(e) {
       e.preventDefault();
       console.log(serialize(this));
-      const response = await fetch('/admin/post/category/add', {
+      const response = await fetch(this.url, {
         method: 'post',
         headers: {
           'Accept': 'application/json, text/plain, */*',
@@ -34,4 +37,4 @@ class Category {
   }
 }
 
-export default Category;
+export default App;

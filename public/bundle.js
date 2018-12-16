@@ -11767,30 +11767,30 @@ var _uploadImage = __webpack_require__(/*! ./javascripts/partial/form/upload-ima
 
 var _uploadImage2 = _interopRequireDefault(_uploadImage);
 
-var _category = __webpack_require__(/*! ./javascripts/admin/article/category/category */ "./src/javascripts/admin/article/category/category.js");
+var _Category = __webpack_require__(/*! ./javascripts/admin/article/category/Category */ "./src/javascripts/admin/article/category/Category.js");
 
-var _category2 = _interopRequireDefault(_category);
+var _Category2 = _interopRequireDefault(_Category);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SIGNUP_SELECTOR = '#signup-form';
 var LOGIN_SELECTOR = '#login-form';
 var UPLOAD_IMAGE_SELECTOR = '#upload-image-form';
-var ARTICLE_CATEGORY_SELECTOR = '#article-category-add-form';
+var ARTICLE_CATEGORY_ADD_SELECTOR = '#article-category-add-form';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
 (0, _login2.default)(LOGIN_SELECTOR);
 (0, _uploadImage2.default)(UPLOAD_IMAGE_SELECTOR);
 
 // Category
-var CategoryObj = new _category2.default(ARTICLE_CATEGORY_SELECTOR);
-CategoryObj.add();
+var CategoryObj = new _Category2.default();
+CategoryObj.add(ARTICLE_CATEGORY_ADD_SELECTOR);
 
 /***/ }),
 
-/***/ "./src/javascripts/admin/article/category/category.js":
+/***/ "./src/javascripts/admin/article/category/Category.js":
 /*!************************************************************!*\
-  !*** ./src/javascripts/admin/article/category/category.js ***!
+  !*** ./src/javascripts/admin/article/category/Category.js ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11802,79 +11802,32 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _App2 = __webpack_require__(/*! ../../../base/App */ "./src/javascripts/base/App.js");
 
-var _jDi = __webpack_require__(/*! ../../../libs/jDi */ "./src/javascripts/libs/jDi.js");
+var _App3 = _interopRequireDefault(_App2);
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Category = function () {
-  function Category(element) {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Category = function (_App) {
+  _inherits(Category, _App);
+
+  function Category() {
     _classCallCheck(this, Category);
 
-    this.selector = document.querySelector(element);
+    var _this = _possibleConstructorReturn(this, (Category.__proto__ || Object.getPrototypeOf(Category)).call(this));
+
+    _this.url = '/admin/post/category/add';
+    return _this;
   }
 
-  _createClass(Category, [{
-    key: 'add',
-    value: function add() {
-      this.selector.addEventListener('submit', function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-          var response, json;
-          return regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  e.preventDefault();
-                  console.log((0, _jDi.serialize)(this));
-                  _context.next = 4;
-                  return fetch('/admin/post/category/add', {
-                    method: 'post',
-                    headers: {
-                      'Accept': 'application/json, text/plain, */*',
-                      'Content-Type': 'application/json'
-                    },
-                    credentials: 'same-origin',
-                    body: (0, _jDi.serialize)(this)
-                  });
-
-                case 4:
-                  response = _context.sent;
-                  _context.next = 7;
-                  return response.json();
-
-                case 7:
-                  json = _context.sent;
-
-                  console.log(json);
-                  // const msg = document.querySelector('.message');
-                  // msg.innerHTML = json.message;
-                  // if (json.message) {
-                  //   setTimeout(() => {
-                  //     msg.innerHTML = '<a href=\'/auth/category\'>На главную</a>';
-                  //   }, 3000);
-                  // }
-                  // window.location = '/auth/category';
-
-                case 9:
-                case 'end':
-                  return _context.stop();
-              }
-            }
-          }, _callee, this);
-        }));
-
-        return function (_x) {
-          return _ref.apply(this, arguments);
-        };
-      }());
-    }
-  }]);
-
   return Category;
-}();
+}(_App3.default);
 
 exports.default = Category;
 
@@ -12036,6 +11989,102 @@ var signup = function signup(selector) {
 };
 
 exports.default = signup;
+
+/***/ }),
+
+/***/ "./src/javascripts/base/App.js":
+/*!*************************************!*\
+  !*** ./src/javascripts/base/App.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jDi = __webpack_require__(/*! ../libs/jDi */ "./src/javascripts/libs/jDi.js");
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var App = function () {
+  function App() {
+    _classCallCheck(this, App);
+
+    this.selector = null;
+    this.url = '';
+  }
+  //  '/admin/post/category/add'
+
+
+  _createClass(App, [{
+    key: 'add',
+    value: function add(element) {
+      this.selector = document.querySelector(element);
+      this.selector.addEventListener('submit', function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+          var response, json;
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  e.preventDefault();
+                  console.log((0, _jDi.serialize)(this));
+                  _context.next = 4;
+                  return fetch(this.url, {
+                    method: 'post',
+                    headers: {
+                      'Accept': 'application/json, text/plain, */*',
+                      'Content-Type': 'application/json'
+                    },
+                    credentials: 'same-origin',
+                    body: (0, _jDi.serialize)(this)
+                  });
+
+                case 4:
+                  response = _context.sent;
+                  _context.next = 7;
+                  return response.json();
+
+                case 7:
+                  json = _context.sent;
+
+                  console.log(json);
+                  // const msg = document.querySelector('.message');
+                  // msg.innerHTML = json.message;
+                  // if (json.message) {
+                  //   setTimeout(() => {
+                  //     msg.innerHTML = '<a href=\'/auth/category\'>На главную</a>';
+                  //   }, 3000);
+                  // }
+                  // window.location = '/auth/category';
+
+                case 9:
+                case 'end':
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
+    }
+  }]);
+
+  return App;
+}();
+
+exports.default = App;
 
 /***/ }),
 
