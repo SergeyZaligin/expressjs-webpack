@@ -2,8 +2,10 @@ import App from '../../../base/App';
 
 class Category extends App {
   constructor() {
-    super();
-    this.url = '/admin/post/category/add';
+    super(
+        '#article-category-add-form',
+        '/admin/post/category/add'
+    );
   }
 }
 

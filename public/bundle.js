@@ -11776,7 +11776,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var SIGNUP_SELECTOR = '#signup-form';
 var LOGIN_SELECTOR = '#login-form';
 var UPLOAD_IMAGE_SELECTOR = '#upload-image-form';
-var ARTICLE_CATEGORY_ADD_SELECTOR = '#article-category-add-form';
+// const ARTICLE_CATEGORY_ADD_SELECTOR = '#article-category-add-form';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
 (0, _login2.default)(LOGIN_SELECTOR);
@@ -11784,7 +11784,7 @@ var ARTICLE_CATEGORY_ADD_SELECTOR = '#article-category-add-form';
 
 // Category
 var CategoryObj = new _Category2.default();
-CategoryObj.add(ARTICLE_CATEGORY_ADD_SELECTOR);
+CategoryObj.add();
 
 /***/ }),
 
@@ -11820,10 +11820,7 @@ var Category = function (_App) {
   function Category() {
     _classCallCheck(this, Category);
 
-    var _this = _possibleConstructorReturn(this, (Category.__proto__ || Object.getPrototypeOf(Category)).call(this));
-
-    _this.url = '/admin/post/category/add';
-    return _this;
+    return _possibleConstructorReturn(this, (Category.__proto__ || Object.getPrototypeOf(Category)).call(this, '#article-category-add-form', '/admin/post/category/add'));
   }
 
   return Category;
@@ -12015,20 +12012,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var App = function () {
-  function App() {
+  function App(addSelector, addUrl) {
     _classCallCheck(this, App);
 
-    this.selector = null;
-    this.url = '';
+    this.addSelector = addSelector;
+    this.addUrl = addUrl;
   }
+
   //  '/admin/post/category/add'
 
 
   _createClass(App, [{
     key: 'add',
-    value: function add(element) {
-      this.selector = document.querySelector(element);
-      this.selector.addEventListener('submit', function () {
+    value: function add() {
+      var el = document.querySelector(this.addSelector);
+      var addUrl = this.addUrl;
+      el.addEventListener('submit', function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
           var response, json;
           return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -12038,7 +12037,7 @@ var App = function () {
                   e.preventDefault();
                   console.log((0, _jDi.serialize)(this));
                   _context.next = 4;
-                  return fetch(this.url, {
+                  return fetch(addUrl, {
                     method: 'post',
                     headers: {
                       'Accept': 'application/json, text/plain, */*',

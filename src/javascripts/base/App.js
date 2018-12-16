@@ -3,17 +3,19 @@ import {
 } from '../libs/jDi';
 
 class App {
-  constructor() {
-    this.selector = null;
-    this.url = '';
+  constructor(addSelector, addUrl) {
+    this.addSelector = addSelector;
+    this.addUrl = addUrl;
   }
+
   //  '/admin/post/category/add'
-  add(element) {
-    this.selector = document.querySelector(element);
-    this.selector.addEventListener('submit', async function(e) {
+  add() {
+    const el = document.querySelector(this.addSelector);
+    const addUrl = this.addUrl;
+    el.addEventListener('submit', async function(e) {
       e.preventDefault();
       console.log(serialize(this));
-      const response = await fetch(this.url, {
+      const response = await fetch(addUrl, {
         method: 'post',
         headers: {
           'Accept': 'application/json, text/plain, */*',
