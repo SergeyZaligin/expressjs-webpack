@@ -11836,6 +11836,7 @@ var Category = function () {
                       'Accept': 'application/json, text/plain, */*',
                       'Content-Type': 'application/json'
                     },
+                    credentials: 'same-origin',
                     body: (0, _jDi.serialize)(this)
                   });
 
