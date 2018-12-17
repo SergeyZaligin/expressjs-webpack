@@ -1,7 +1,9 @@
 const multer = require('multer');
 const moment = require('moment');
+const diskStorage = require('../utils/diskStorage');
+// const sharp = require('sharp');
 
-const storage = multer.diskStorage({
+const storage = diskStorage({
   destination(req, file, cb) {
     cb(null, 'uploads/article');
   },
