@@ -11771,12 +11771,15 @@ var _Category = __webpack_require__(/*! ./javascripts/admin/article/category/Cat
 
 var _Category2 = _interopRequireDefault(_Category);
 
+var _Article = __webpack_require__(/*! ./javascripts/admin/article/Article */ "./src/javascripts/admin/article/Article.js");
+
+var _Article2 = _interopRequireDefault(_Article);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SIGNUP_SELECTOR = '#signup-form';
 var LOGIN_SELECTOR = '#login-form';
 var UPLOAD_IMAGE_SELECTOR = '#upload-image-form';
-// const ARTICLE_CATEGORY_ADD_SELECTOR = '#article-category-add-form';
 
 (0, _signup2.default)(SIGNUP_SELECTOR);
 (0, _login2.default)(LOGIN_SELECTOR);
@@ -11784,7 +11787,51 @@ var UPLOAD_IMAGE_SELECTOR = '#upload-image-form';
 
 // Category
 var CategoryObj = new _Category2.default();
+var ArticleObj = new _Article2.default();
 CategoryObj.add();
+ArticleObj.add();
+
+/***/ }),
+
+/***/ "./src/javascripts/admin/article/Article.js":
+/*!**************************************************!*\
+  !*** ./src/javascripts/admin/article/Article.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _App2 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../base/App'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _App3 = _interopRequireDefault(_App2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Article = function (_App) {
+  _inherits(Article, _App);
+
+  function Article() {
+    _classCallCheck(this, Article);
+
+    return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, '#article-add-form', '/admin/post/add'));
+  }
+
+  return Article;
+}(_App3.default);
+
+exports.default = Article;
 
 /***/ }),
 
