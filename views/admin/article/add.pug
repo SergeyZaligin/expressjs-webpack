@@ -3,7 +3,7 @@ extends ../layout
 block content
   div.container
     h1= title
-    form(method="post", action="/admin/post/add", id="article-add-form")
+    form(method="post", action="/admin/post/add", id="article-add-form", enctype="multipart/form-data")
       div.form-control
         label(for="published") Опубликовано
         input(id="published", type="radio", name="visible", value="1")
@@ -37,6 +37,9 @@ block content
       div.form-control
         label(for="sort") Сортировка
         input(id="sort", type="number", name="sort", value="0")
+      div.form-control
+        label(for="thumbnail") Миниатюра
+        input(id="thumbnail", type="file", name="thumbnail")
       div.form-control
         button(type="submit") Добавить категорию
     include ../../partial/form/upload-image

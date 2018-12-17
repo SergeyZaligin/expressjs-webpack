@@ -1,3 +1,7 @@
+const Post = require('../../../models/article/Post');
+const transliterate = require('transliterate-cyrillic-text-to-latin-url');
+const validator = require('validator');
+
 // begin Page admin add article
 module.exports.addPostPage = (req, res) => {
   const nickname = req.session.nickname;
@@ -20,12 +24,17 @@ module.exports.addPostPage = (req, res) => {
 
 module.exports.addPost = (req, res) => {
   const visible = Boolean(req.body.visible);
-  const name = validator.escape(validator.trim(req.body.name));
+  const title = validator.escape(validator.trim(req.body.title));
   const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.name)));
   const description = validator.escape(validator.trim(req.body.description));
   const keywords = validator.escape(validator.trim(req.body.keywords));
-  const sort = parseInt(req.body.sort);
+  const seopreview = escape(req.body.seopreview);
+  const preview = escape(req.body.preview);
+  const text = escape(req.body.text);
+  const category = escape(req.body.category);
   const user = req.session.userId;
+  const sort = parseInt(req.body.sort);
+  const thumbnail = parseInt(req.body.thumbnail);
 
   if (validator.isMongoId(user)) {
     console.log('Yes is it mongoID');
@@ -33,12 +42,17 @@ module.exports.addPost = (req, res) => {
 
   const post = {
     visible,
-    name,
+    title,
     slug,
     description,
     keywords,
-    sort,
+    seopreview,
+    preview,
+    text,
+    category,
     user,
+    sort,
+    thumbnail,
   };
 
   console.log('POST ADD ===>', post);
