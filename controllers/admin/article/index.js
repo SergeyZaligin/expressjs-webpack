@@ -31,7 +31,11 @@ module.exports.addPostPage = async (req, res) => {
 };
 
 module.exports.addPost = (req, res) => {
+  console.log(req.file);
   console.log(req.body);
+  res.status(200).json({
+    message: 'Миниатюра загружена на сервер в папку uploads.',
+  });
   // const visible = Boolean(req.body.visible);
   // const title = validator.escape(validator.trim(req.body.title));
   // const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../middleware/upload');
 
 const controller = require('../controllers/admin');
 const controllerAdminArticleCategory = require('../controllers/admin/article/category');
@@ -21,6 +22,7 @@ router.get('/post/add',
 );
 router.post('/post/add',
     guardRouter.guardAdminRoutes,
+    upload.single('file'),
     controllerAdminArticle.addPost
 );
 router.get('/post/update',

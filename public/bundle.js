@@ -12168,14 +12168,15 @@ var App = function () {
                     formEntries.append('text', this.text.value);
                     formEntries.append('category', this.category.value);
                     formEntries.append('sort', this.sort.value);
+                    formEntries.append('thumbnail', this.file.value);
                     console.log(this);
-                    _context2.next = 15;
+                    _context2.next = 16;
                     return fetch(addUrl, {
                       method: 'post',
                       body: formEntries
                     });
 
-                  case 15:
+                  case 16:
                   case 'end':
                     return _context2.stop();
                 }

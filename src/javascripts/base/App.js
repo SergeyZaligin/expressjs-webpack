@@ -67,6 +67,7 @@ class App {
         formEntries.append('text', this.text.value);
         formEntries.append('category', this.category.value);
         formEntries.append('sort', this.sort.value);
+        formEntries.append('thumbnail', this.file.value);
         console.log(this);
         await fetch(addUrl, {
           method: 'post',
