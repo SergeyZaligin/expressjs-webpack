@@ -12144,7 +12144,7 @@ var App = function () {
     key: 'addMultipart',
     value: function addMultipart() {
       var el = document.querySelector(this.addSelector);
-      // const addUrl = this.addUrl;
+      var addUrl = this.addUrl;
       if (el) {
         el.addEventListener('submit', function () {
           var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
@@ -12155,13 +12155,15 @@ var App = function () {
                   case 0:
                     e.preventDefault();
                     formEntries = new FormData(this);
-                    _context2.next = 4;
-                    return fetch('/admin/post/add', {
+
+                    console.log(this);
+                    _context2.next = 5;
+                    return fetch(addUrl, {
                       method: 'post',
                       body: formEntries
                     });
 
-                  case 4:
+                  case 5:
                   case 'end':
                     return _context2.stop();
                 }
