@@ -1,4 +1,4 @@
-import App from '../../../base/App';
+import App from '../../base/App';
 
 class Article extends App {
   constructor() {

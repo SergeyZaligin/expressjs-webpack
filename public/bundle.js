@@ -11807,7 +11807,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _App2 = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../base/App'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _App2 = __webpack_require__(/*! ../../base/App */ "./src/javascripts/base/App.js");
 
 var _App3 = _interopRequireDefault(_App2);
 
