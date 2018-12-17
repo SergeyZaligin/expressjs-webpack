@@ -12027,56 +12027,71 @@ var App = function () {
     value: function add() {
       var el = document.querySelector(this.addSelector);
       var addUrl = this.addUrl;
-      el.addEventListener('submit', function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-          var response, json;
-          return regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  e.preventDefault();
-                  console.log((0, _jDi.serialize)(this));
-                  _context.next = 4;
-                  return fetch(addUrl, {
-                    method: 'post',
-                    headers: {
-                      'Accept': 'application/json, text/plain, */*',
-                      'Content-Type': 'application/json'
-                    },
-                    credentials: 'same-origin',
-                    body: (0, _jDi.serialize)(this)
-                  });
+      if (el) {
+        el.addEventListener('submit', function () {
+          var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+            var response, json;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    e.preventDefault();
+                    console.log((0, _jDi.serialize)(this));
+                    _context.prev = 2;
+                    _context.next = 5;
+                    return fetch(addUrl, {
+                      method: 'post',
+                      headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                      },
+                      credentials: 'same-origin',
+                      body: (0, _jDi.serialize)(this)
+                    });
 
-                case 4:
-                  response = _context.sent;
-                  _context.next = 7;
-                  return response.json();
+                  case 5:
+                    response = _context.sent;
+                    _context.next = 8;
+                    return response.json();
 
-                case 7:
-                  json = _context.sent;
+                  case 8:
+                    json = _context.sent;
 
-                  console.log(json);
-                  // const msg = document.querySelector('.message');
-                  // msg.innerHTML = json.message;
-                  // if (json.message) {
-                  //   setTimeout(() => {
-                  //     msg.innerHTML = '<a href=\'/auth/category\'>На главную</a>';
-                  //   }, 3000);
-                  // }
-                  // window.location = '/auth/category';
+                    console.log(json);
+                    _context.next = 15;
+                    break;
 
-                case 9:
-                case 'end':
-                  return _context.stop();
+                  case 12:
+                    _context.prev = 12;
+                    _context.t0 = _context['catch'](2);
+
+                    console.log(_context.t0);
+
+                  case 15:
+                  case 'end':
+                    return _context.stop();
+                }
               }
-            }
-          }, _callee, this);
-        }));
+            }, _callee, this, [[2, 12]]);
+          }));
 
-        return function (_x) {
-          return _ref.apply(this, arguments);
-        };
-      }());
+          return function (_x) {
+            return _ref.apply(this, arguments);
+          };
+        }()
+
+        // const msg = document.querySelector('.message');
+        // msg.innerHTML = json.message;
+        // if (json.message) {
+        //   setTimeout(() => {
+        //     msg.innerHTML = '<a href=\'/auth/category\'>На главную</a>';
+        //   }, 3000);
+        // }
+        // window.location = '/auth/category';
+        );
+      } else {
+        return;
+      }
     }
   }]);
 

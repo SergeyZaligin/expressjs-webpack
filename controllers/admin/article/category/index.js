@@ -1,4 +1,6 @@
+const Category = require('../../../../models/article/Category');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
+const validator = require('validator');
 
 // begin Page admin add article category
 module.exports.addCategoryPostPage = (req, res) => {
@@ -11,14 +13,18 @@ module.exports.addCategoryPostPage = (req, res) => {
   });
 };
 
-module.exports.addCategoryPost = (req, res) => {
-  const visible = req.body.visible;
-  const name = req.body.name;
-  const slug = req.body.slug ? req.body.slug : transliterate(req.body.name);
-  const description = req.body.description;
-  const keywords = req.body.keywords;
-  const sort = req.body.sort;
+module.exports.addCategoryPost = async (req, res) => {
+  const visible = Boolean(req.body.visible);
+  const name = validator.escape(validator.trim(req.body.name));
+  const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.name)));
+  const description = validator.escape(validator.trim(req.body.description));
+  const keywords = validator.escape(validator.trim(req.body.keywords));
+  const sort = parseInt(req.body.sort);
   const user = req.session.userId;
+
+  if (validator.isMongoId(user)) {
+    console.log('Yes is it mongoID');
+  }
 
   const category = {
     visible,
@@ -32,25 +38,25 @@ module.exports.addCategoryPost = (req, res) => {
 
   console.log('CATEGORY ADD ===>', category);
 
+  try {
+    const validCategory = new Category({
+      visible: category.visible,
+      name: category.name,
+      slug: category.slug,
+      description: category.description,
+      keywords: category.keywords,
+      sort: category.sort,
+      user: category.user,
+    });
 
-  // try {
-  //   const salt = bcryptjs.genSaltSync(10);
-
-  //   const validUser = new User({
-  //     nickname: user.nickname,
-  //     email: user.email,
-  //     password: bcryptjs.hashSync(user.password, salt),
-  //     role: user.role,
-  //   });
-
-  //   const res = await validUser.save();
-  //   console.log('res', res);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // res.status(200).send({
-  //   message: ['Вы успешно зарегистрированы!'],
-  // });
+    const res = await validCategory.save();
+    console.log('res', res);
+  } catch (error) {
+    console.log(error);
+  }
+  res.status(200).send({
+    message: ['Категория создана успешно!'],
+  });
 };
 // end Page admin add article category
 
