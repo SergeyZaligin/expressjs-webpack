@@ -86,13 +86,20 @@ module.exports.updateCategoryPost = (req, res) => {
 // end Page admin update article category
 
 // begin Page admin list article category
-module.exports.listCategoryPostPage = (req, res) => {
-  res.render('admin/article/category/list', {
-    title: 'Административная панель - все категории статей',
-    meta: {
-      description: 'Административная панель - все категории статей',
-      keywords: 'Административная панель - все категории статей',
-    },
-  });
+module.exports.listCategoryPostPage = async (req, res) => {
+  try {
+    const categories = await Category.find();
+    console.log(categories);
+    res.render('admin/article/category/list', {
+      title: 'Административная панель - все категории статей',
+      meta: {
+        description: 'Административная панель - все категории статей',
+        keywords: 'Административная панель - все категории статей',
+      },
+      categories,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 // end Page admin list article category
