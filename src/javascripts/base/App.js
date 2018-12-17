@@ -55,6 +55,16 @@ class App {
       el.addEventListener('submit', async function(e) {
         e.preventDefault();
         const formEntries = new FormData(this);
+        formEntries.append('visible', this.visible);
+        formEntries.append('title', this.title);
+        formEntries.append('slug', this.slug);
+        formEntries.append('description', this.description);
+        formEntries.append('keywords', this.keywords);
+        formEntries.append('seopreview', this.seopreview);
+        formEntries.append('preview', this.preview);
+        formEntries.append('text', this.text);
+        formEntries.append('category', this.category);
+        formEntries.append('sort', this.sort);
         console.log(this);
         await fetch(addUrl, {
           method: 'post',

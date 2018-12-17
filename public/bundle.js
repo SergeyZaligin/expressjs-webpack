@@ -12156,14 +12156,24 @@ var App = function () {
                     e.preventDefault();
                     formEntries = new FormData(this);
 
+                    formEntries.append('visible', this.visible);
+                    formEntries.append('title', this.title);
+                    formEntries.append('slug', this.slug);
+                    formEntries.append('description', this.description);
+                    formEntries.append('keywords', this.keywords);
+                    formEntries.append('seopreview', this.seopreview);
+                    formEntries.append('preview', this.preview);
+                    formEntries.append('text', this.text);
+                    formEntries.append('category', this.category);
+                    formEntries.append('sort', this.sort);
                     console.log(this);
-                    _context2.next = 5;
+                    _context2.next = 15;
                     return fetch(addUrl, {
                       method: 'post',
                       body: formEntries
                     });
 
-                  case 5:
+                  case 15:
                   case 'end':
                     return _context2.stop();
                 }
