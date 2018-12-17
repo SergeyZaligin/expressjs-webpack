@@ -11789,7 +11789,7 @@ var UPLOAD_IMAGE_SELECTOR = '#upload-image-form';
 var CategoryObj = new _Category2.default();
 var ArticleObj = new _Article2.default();
 CategoryObj.add();
-ArticleObj.add();
+ArticleObj.addMultipart();
 
 /***/ }),
 
@@ -12136,6 +12136,43 @@ var App = function () {
         // }
         // window.location = '/auth/category';
         );
+      } else {
+        return;
+      }
+    }
+  }, {
+    key: 'addMultipart',
+    value: function addMultipart() {
+      var el = document.querySelector(this.addSelector);
+      // const addUrl = this.addUrl;
+      if (el) {
+        el.addEventListener('submit', function () {
+          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
+            var formEntries;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    e.preventDefault();
+                    formEntries = new FormData(this);
+                    _context2.next = 4;
+                    return fetch('/admin/post/add', {
+                      method: 'post',
+                      body: formEntries
+                    });
+
+                  case 4:
+                  case 'end':
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+
+          return function (_x2) {
+            return _ref2.apply(this, arguments);
+          };
+        }());
       } else {
         return;
       }

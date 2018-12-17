@@ -18,4 +18,4 @@ uploadImage(UPLOAD_IMAGE_SELECTOR);
 const CategoryObj = new Category;
 const ArticleObj = new Article;
 CategoryObj.add();
-ArticleObj.add();
+ArticleObj.addMultipart();

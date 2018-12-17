@@ -47,6 +47,23 @@ class App {
       return;
     }
   }
+
+  addMultipart() {
+    const el = document.querySelector(this.addSelector);
+    // const addUrl = this.addUrl;
+    if (el) {
+      el.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formEntries = new FormData(this);
+        await fetch('/admin/post/add', {
+          method: 'post',
+          body: formEntries,
+        });
+      });
+    } else {
+      return;
+    }
+  }
 }
 
 export default App;
