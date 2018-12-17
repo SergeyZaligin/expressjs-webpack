@@ -1,25 +1,33 @@
 const Post = require('../../../models/article/Post');
+const Category = require('../../../models/article/Category');
 const transliterate = require('transliterate-cyrillic-text-to-latin-url');
 const validator = require('validator');
 
 // begin Page admin add article
-module.exports.addPostPage = (req, res) => {
+module.exports.addPostPage = async (req, res) => {
   const nickname = req.session.nickname;
   const userId = req.session.userId;
   const role = req.session.role;
 
-  res.render('admin/article/add', {
-    title: 'Административная панель - добавить статью',
-    meta: {
-      description: 'Административная панель - добавить статью',
-      keywords: 'Административная панель - добавить статью',
-    },
-    user: {
-      userId,
-      nickname,
-      role,
-    },
-  });
+  try {
+    const categories = await Category.find();
+    console.log(categories);
+    res.render('admin/article/add', {
+      title: 'Административная панель - добавить статью',
+      meta: {
+        description: 'Административная панель - добавить статью',
+        keywords: 'Административная панель - добавить статью',
+      },
+      user: {
+        userId,
+        nickname,
+        role,
+      },
+      categories,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports.addPost = (req, res) => {

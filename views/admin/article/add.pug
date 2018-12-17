@@ -33,7 +33,8 @@ block content
       div.form-control
         label(for="category") Определить в категорию
         select(id="category", name="category")
-          option(value="0") категория
+          each item in categories
+            option(value=item._id) #{item.name}
       div.form-control
         label(for="sort") Сортировка
         input(id="sort", type="number", name="sort", value="0")
@@ -41,6 +42,6 @@ block content
         label(for="thumbnail") Миниатюра
         input(id="thumbnail", type="file", name="thumbnail")
       div.form-control
-        button(type="submit") Добавить категорию
+        button(type="submit") Добавить статью
     include ../../partial/form/upload-image
   
