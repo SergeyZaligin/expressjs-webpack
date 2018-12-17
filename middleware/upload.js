@@ -1,7 +1,7 @@
 const multer = require('multer');
 const moment = require('moment');
 const diskStorage = require('../utils/diskStorage');
-// const sharp = require('sharp');
+const Sharp = require('sharp');
 
 const storage = diskStorage({
   destination(req, file, cb) {
@@ -10,6 +10,18 @@ const storage = diskStorage({
   filename(req, file, cb) {
     const date = moment().format('DDMMYYYY-HHmmss_SSS');
     cb(null, `${date}-${file.originalname}`);
+  },
+  sharp(req, file, cb) {
+    const resizer = Sharp()
+        .resize(1024, 768)
+        .max()
+        .withoutEnlargement()
+        .toFormat('jpg')
+        .jpeg({
+          quality: 40,
+          progressive: true,
+        });
+    cb(null, resizer);
   },
 });
 

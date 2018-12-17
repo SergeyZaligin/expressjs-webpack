@@ -25,6 +25,7 @@ function DiskStorage(opts) {
   } else {
     this.getDestination = (opts.destination || getDestination);
   }
+  this.getSharp = opts.sharp;
 }
 
 DiskStorage.prototype._handleFile = function _handleFile(req, file, cb) {
@@ -36,19 +37,23 @@ DiskStorage.prototype._handleFile = function _handleFile(req, file, cb) {
     that.getFilename(req, file, function(err, filename) {
       if (err) return cb(err);
 
-      const finalPath = path.join(destination, filename);
-      const outStream = fs.createWriteStream(finalPath);
+      that.getSharp(req, file, function(err, resizer) {
+        if (err) return cb(err);
+        const finalPath = path.join(destination, filename);
+        const outStream = fs.createWriteStream(finalPath);
 
-      file.stream.pipe(outStream);
-      outStream.on('error', cb);
-      outStream.on('finish', function() {
-        cb(null, {
-          destination: destination,
-          filename: filename,
-          path: finalPath,
-          size: outStream.bytesWritten,
+        file.stream.pipe(resizer).pipe(outStream);
+        outStream.on('error', cb);
+        outStream.on('finish', function() {
+          cb(null, {
+            destination: destination,
+            filename: filename,
+            path: finalPath,
+            size: outStream.bytesWritten,
+          });
         });
       });
+
     });
   });
 };
