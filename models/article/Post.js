@@ -47,7 +47,7 @@ const PostSchema = new Schema({
     type: Number,
     default: 1,
   },
-  imageThumbnail: {
+  thumbnail: {
     type: String,
     default: '',
   },

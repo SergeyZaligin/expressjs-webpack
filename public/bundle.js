@@ -12154,18 +12154,18 @@ var App = function () {
                 switch (_context2.prev = _context2.next) {
                   case 0:
                     e.preventDefault();
-                    formEntries = new FormData(this);
+                    formEntries = new FormData();
 
-                    formEntries.append('visible', this.visible);
-                    formEntries.append('title', this.title);
-                    formEntries.append('slug', this.slug);
-                    formEntries.append('description', this.description);
-                    formEntries.append('keywords', this.keywords);
-                    formEntries.append('seopreview', this.seopreview);
-                    formEntries.append('preview', this.preview);
-                    formEntries.append('text', this.text);
-                    formEntries.append('category', this.category);
-                    formEntries.append('sort', this.sort);
+                    formEntries.append('visible', this.visible.value);
+                    formEntries.append('title', this.title.value);
+                    formEntries.append('slug', this.slug.value);
+                    formEntries.append('description', this.description.value);
+                    formEntries.append('keywords', this.keywords.value);
+                    formEntries.append('seopreview', this.seopreview.value);
+                    formEntries.append('preview', this.preview.value);
+                    formEntries.append('text', this.text.value);
+                    formEntries.append('category', this.category.value);
+                    formEntries.append('sort', this.sort.value);
                     console.log(this);
                     _context2.next = 15;
                     return fetch(addUrl, {
