@@ -32,38 +32,38 @@ module.exports.addPostPage = async (req, res) => {
 
 module.exports.addPost = (req, res) => {
   console.log(req.body);
-  const visible = Boolean(req.body.visible);
-  const title = validator.escape(validator.trim(req.body.title));
-  const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));
-  const description = validator.escape(validator.trim(req.body.description));
-  const keywords = validator.escape(validator.trim(req.body.keywords));
-  const seopreview = validator.escape(req.body.seopreview);
-  const preview = validator.escape(req.body.preview);
-  const text = validator.escape(req.body.text);
-  const category = validator.escape(req.body.category);
-  const user = req.session.userId;
-  const sort = parseInt(req.body.sort);
+  // const visible = Boolean(req.body.visible);
+  // const title = validator.escape(validator.trim(req.body.title));
+  // const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));
+  // const description = validator.escape(validator.trim(req.body.description));
+  // const keywords = validator.escape(validator.trim(req.body.keywords));
+  // const seopreview = validator.escape(req.body.seopreview);
+  // const preview = validator.escape(req.body.preview);
+  // const text = validator.escape(req.body.text);
+  // const category = validator.escape(req.body.category);
+  // const user = req.session.userId;
+  // const sort = parseInt(req.body.sort);
   // const thumbnail = req.body.thumbnail;
 
-  if (validator.isMongoId(user)) {
-    console.log('Yes is it mongoID');
-  }
+  // if (validator.isMongoId(user)) {
+  //   console.log('Yes is it mongoID');
+  // }
 
-  const post = {
-    visible,
-    title,
-    slug,
-    description,
-    keywords,
-    seopreview,
-    preview,
-    text,
-    category,
-    user,
-    sort,
-  };
+  // const post = {
+  //   visible,
+  //   title,
+  //   slug,
+  //   description,
+  //   keywords,
+  //   seopreview,
+  //   preview,
+  //   text,
+  //   category,
+  //   user,
+  //   sort,
+  // };
 
-  console.log('POST ADD ===>', post);
+  // console.log('POST ADD ===>', post);
 
   // try {
   //   const validCategory = new Category({

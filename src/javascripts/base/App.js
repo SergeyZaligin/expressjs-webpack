@@ -51,6 +51,8 @@ class App {
   addMultipart() {
     const el = document.querySelector(this.addSelector);
     const addUrl = this.addUrl;
+    console.log('el', el);
+    console.log('addUrl', addUrl);
     if (el) {
       el.addEventListener('submit', async function(e) {
         e.preventDefault();

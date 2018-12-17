@@ -12145,6 +12145,8 @@ var App = function () {
     value: function addMultipart() {
       var el = document.querySelector(this.addSelector);
       var addUrl = this.addUrl;
+      console.log('el', el);
+      console.log('addUrl', addUrl);
       if (el) {
         el.addEventListener('submit', function () {
           var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
