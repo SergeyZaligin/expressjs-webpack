@@ -21,8 +21,8 @@ router.get('/post/add',
     controllerAdminArticle.addPostPage
 );
 router.post('/post/add',
-    guardRouter.guardAdminRoutes,
     upload.single('file'),
+    guardRouter.guardAdminRoutes,
     controllerAdminArticle.addPost
 );
 router.get('/post/update',

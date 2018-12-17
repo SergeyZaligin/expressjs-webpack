@@ -12156,27 +12156,27 @@ var App = function () {
                 switch (_context2.prev = _context2.next) {
                   case 0:
                     e.preventDefault();
-                    formEntries = new FormData();
+                    formEntries = new FormData(this);
+                    // formEntries.append('visible', this.visible.value);
+                    // formEntries.append('title', this.title.value);
+                    // formEntries.append('slug', this.slug.value);
+                    // formEntries.append('description', this.description.value);
+                    // formEntries.append('keywords', this.keywords.value);
+                    // formEntries.append('seopreview', this.seopreview.value);
+                    // formEntries.append('preview', this.preview.value);
+                    // formEntries.append('text', this.text.value);
+                    // formEntries.append('category', this.category.value);
+                    // formEntries.append('sort', this.sort.value);
+                    // formEntries.append('thumbnail', this.file);
 
-                    formEntries.append('visible', this.visible.value);
-                    formEntries.append('title', this.title.value);
-                    formEntries.append('slug', this.slug.value);
-                    formEntries.append('description', this.description.value);
-                    formEntries.append('keywords', this.keywords.value);
-                    formEntries.append('seopreview', this.seopreview.value);
-                    formEntries.append('preview', this.preview.value);
-                    formEntries.append('text', this.text.value);
-                    formEntries.append('category', this.category.value);
-                    formEntries.append('sort', this.sort.value);
-                    formEntries.append('thumbnail', this.file.value);
                     console.log(this);
-                    _context2.next = 16;
+                    _context2.next = 5;
                     return fetch(addUrl, {
                       method: 'post',
                       body: formEntries
                     });
 
-                  case 16:
+                  case 5:
                   case 'end':
                     return _context2.stop();
                 }

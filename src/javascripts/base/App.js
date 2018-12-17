@@ -56,18 +56,18 @@ class App {
     if (el) {
       el.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const formEntries = new FormData();
-        formEntries.append('visible', this.visible.value);
-        formEntries.append('title', this.title.value);
-        formEntries.append('slug', this.slug.value);
-        formEntries.append('description', this.description.value);
-        formEntries.append('keywords', this.keywords.value);
-        formEntries.append('seopreview', this.seopreview.value);
-        formEntries.append('preview', this.preview.value);
-        formEntries.append('text', this.text.value);
-        formEntries.append('category', this.category.value);
-        formEntries.append('sort', this.sort.value);
-        formEntries.append('thumbnail', this.file.value);
+        const formEntries = new FormData(this);
+        // formEntries.append('visible', this.visible.value);
+        // formEntries.append('title', this.title.value);
+        // formEntries.append('slug', this.slug.value);
+        // formEntries.append('description', this.description.value);
+        // formEntries.append('keywords', this.keywords.value);
+        // formEntries.append('seopreview', this.seopreview.value);
+        // formEntries.append('preview', this.preview.value);
+        // formEntries.append('text', this.text.value);
+        // formEntries.append('category', this.category.value);
+        // formEntries.append('sort', this.sort.value);
+        // formEntries.append('thumbnail', this.file);
         console.log(this);
         await fetch(addUrl, {
           method: 'post',

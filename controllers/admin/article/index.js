@@ -85,9 +85,9 @@ module.exports.addPost = (req, res) => {
   // } catch (error) {
   //   console.log(error);
   // }
-  res.status(200).send({
-    message: ['Категория создана успешно!'],
-  });
+  // res.status(200).send({
+  //   message: ['Категория создана успешно!'],
+  // });
 };
 // end Page admin add article
 
