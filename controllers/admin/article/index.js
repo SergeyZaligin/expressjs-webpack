@@ -19,7 +19,49 @@ module.exports.addPostPage = (req, res) => {
 };
 
 module.exports.addPost = (req, res) => {
+  const visible = Boolean(req.body.visible);
+  const name = validator.escape(validator.trim(req.body.name));
+  const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.name)));
+  const description = validator.escape(validator.trim(req.body.description));
+  const keywords = validator.escape(validator.trim(req.body.keywords));
+  const sort = parseInt(req.body.sort);
+  const user = req.session.userId;
 
+  if (validator.isMongoId(user)) {
+    console.log('Yes is it mongoID');
+  }
+
+  const post = {
+    visible,
+    name,
+    slug,
+    description,
+    keywords,
+    sort,
+    user,
+  };
+
+  console.log('POST ADD ===>', post);
+
+  // try {
+  //   const validCategory = new Category({
+  //     visible: category.visible,
+  //     name: category.name,
+  //     slug: category.slug,
+  //     description: category.description,
+  //     keywords: category.keywords,
+  //     sort: category.sort,
+  //     user: category.user,
+  //   });
+
+  //   const res = await validCategory.save();
+  //   console.log('res', res);
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  res.status(200).send({
+    message: ['Категория создана успешно!'],
+  });
 };
 // end Page admin add article
 
