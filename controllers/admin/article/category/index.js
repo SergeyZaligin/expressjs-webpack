@@ -22,10 +22,6 @@ module.exports.addCategoryPost = async (req, res) => {
   const sort = parseInt(req.body.sort);
   const user = req.session.userId;
 
-  if (validator.isMongoId(user)) {
-    console.log('Yes is it mongoID');
-  }
-
   const category = {
     visible,
     name,
@@ -35,8 +31,6 @@ module.exports.addCategoryPost = async (req, res) => {
     sort,
     user,
   };
-
-  console.log('CATEGORY ADD ===>', category);
 
   try {
     const validCategory = new Category({
@@ -49,8 +43,7 @@ module.exports.addCategoryPost = async (req, res) => {
       user: category.user,
     });
 
-    const res = await validCategory.save();
-    console.log('res', res);
+    await validCategory.save();
   } catch (error) {
     console.log(error);
   }

@@ -44,7 +44,10 @@ module.exports.addPost = async (req, res) => {
   const category = validator.escape(req.body.category);
   const user = req.session.userId;
   const sort = parseInt(req.body.sort);
-  const thumbnail = req.file.path;
+  let thumbnail = 'uploads/extra/noimage.png';
+  if (req.file) {
+    thumbnail = req.file.path;
+  }
 
   if (validator.isMongoId(user)) {
     console.log('Yes is it mongoID');
@@ -83,8 +86,7 @@ module.exports.addPost = async (req, res) => {
       thumbnail: post.thumbnail,
     });
 
-    const res = await validPost.save();
-    console.log('res', res);
+    await validPost.save();
   } catch (error) {
     console.log(error);
   }
