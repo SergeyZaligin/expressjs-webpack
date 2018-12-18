@@ -44,7 +44,7 @@ module.exports.addPost = async (req, res) => {
   const category = validator.escape(req.body.category);
   const user = req.session.userId;
   const sort = parseInt(req.body.sort);
-  let thumbnail = 'uploads/extra/noimage.png';
+  let thumbnail = 'uploads/extra/no-image.png';
   if (req.file) {
     thumbnail = req.file.path;
   }

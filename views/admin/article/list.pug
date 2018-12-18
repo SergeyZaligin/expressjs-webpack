@@ -4,4 +4,8 @@ block content
   div.container
     h1= title
     each item in posts
-      p=item.title
+      table(class="admin-article-list")
+        tr
+          th Название статьи
+        tr
+          td=item.title
