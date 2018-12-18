@@ -7,8 +7,6 @@ const storage = diskStorage({
   destination(req, file, cb) {
     if (req.body.isThumbnail) {
       cb(null, 'uploads/article/thumbnail/');
-    } else if (!req.body.isThumbnail) {
-      cb(null, 'uploads/article/');
     } else {
       cb(null, 'uploads/');
     }
@@ -19,7 +17,6 @@ const storage = diskStorage({
   },
   sharp(req, file, cb) {
     const resizer = Sharp()
-        .resize(1024, 768)
         .max()
         .withoutEnlargement()
         .toFormat('jpg')
