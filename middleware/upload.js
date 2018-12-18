@@ -5,7 +5,13 @@ const Sharp = require('sharp');
 
 const storage = diskStorage({
   destination(req, file, cb) {
-    cb(null, 'uploads/article');
+    if (req.body.isThumbnail) {
+      cb(null, 'uploads/article/thumbnail/');
+    } else if (!req.body.isThumbnail) {
+      cb(null, 'uploads/article/');
+    } else {
+      cb(null, 'uploads/');
+    }
   },
   filename(req, file, cb) {
     const date = moment().format('DDMMYYYY-HHmmss_SSS');

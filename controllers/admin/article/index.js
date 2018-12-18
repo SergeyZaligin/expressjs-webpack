@@ -33,10 +33,6 @@ module.exports.addPostPage = async (req, res) => {
 module.exports.addPost = async (req, res) => {
   // console.log(req.file);
   // console.log(req.body);
-  res.status(200).json({
-    message: 'Миниатюра загружена на сервер в папку article/thumbnail.',
-  });
-
   const visible = Boolean(req.body.visible);
   const title = validator.escape(validator.trim(req.body.title));
   const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));
@@ -48,8 +44,13 @@ module.exports.addPost = async (req, res) => {
   const category = validator.escape(req.body.category);
   const user = req.session.userId;
   const sort = parseInt(req.body.sort);
-  const thumbnail = req.file.path;
+  const thumbnail = req.file ? req.file.path : '';
+  console.log('PATH', req.body);
+  let isThumbnail = req.body.isThumbnail;
 
+  if (thumbnail) {
+    isThumbnail = true;
+  }
   if (validator.isMongoId(user)) {
     console.log('Yes is it mongoID');
   }
@@ -67,6 +68,7 @@ module.exports.addPost = async (req, res) => {
     user,
     sort,
     thumbnail,
+    isThumbnail,
   };
 
   console.log('POST ADD ===>', post);
@@ -85,6 +87,7 @@ module.exports.addPost = async (req, res) => {
       user: post.user,
       sort: post.sort,
       thumbnail: post.thumbnail,
+      isThumbnail: post.isThumbnail,
     });
 
     const res = await validPost.save();
@@ -92,8 +95,8 @@ module.exports.addPost = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-  res.status(200).send({
-    message: ['Миниатюра успешно загружена на сервер в папку article/thumbnail!'],
+  res.status(200).json({
+    message: 'Миниатюра успешно загружена на сервер в папку article/thumbnail!',
   });
 };
 // end Page admin add article
