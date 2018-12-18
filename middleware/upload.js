@@ -11,6 +11,7 @@ const Sharp = require('sharp');
 module.exports.upload = (url) => {
   const storage = diskStorage({
     destination(req, file, cb) {
+      console.log('UPLOAD REQBODY', req.body);
       cb(null, url);
     },
     filename(req, file, cb) {
@@ -19,12 +20,15 @@ module.exports.upload = (url) => {
     },
     sharp(req, file, cb) {
       const resizer = Sharp()
-          .resize({ fit: 'inside', withoutEnlargement: true })
-          .toFormat('jpg')
-          .jpeg({
-            quality: 40,
-            progressive: true,
-          });
+        .resize({
+          fit: 'inside',
+          withoutEnlargement: true
+        })
+        .toFormat('jpg')
+        .jpeg({
+          quality: 40,
+          progressive: true,
+        });
       cb(null, resizer);
     },
   });

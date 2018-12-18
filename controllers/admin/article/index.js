@@ -49,9 +49,9 @@ module.exports.addPost = async (req, res) => {
     thumbnail = req.file.path;
   }
 
-  if (validator.isMongoId(user)) {
-    console.log('Yes is it mongoID');
-  }
+  // if (validator.isMongoId(user)) {
+  //   console.log('Yes is it mongoID');
+  // }
 
   const post = {
     visible,
