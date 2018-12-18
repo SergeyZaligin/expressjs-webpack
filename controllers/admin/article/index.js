@@ -30,12 +30,13 @@ module.exports.addPostPage = async (req, res) => {
   }
 };
 
-module.exports.addPost = (req, res) => {
+module.exports.addPost = async (req, res) => {
   // console.log(req.file);
   // console.log(req.body);
   res.status(200).json({
-    message: 'Миниатюра загружена на сервер в папку uploads.',
+    message: 'Миниатюра загружена на сервер в папку article/thumbnail.',
   });
+
   const visible = Boolean(req.body.visible);
   const title = validator.escape(validator.trim(req.body.title));
   const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));
@@ -70,25 +71,30 @@ module.exports.addPost = (req, res) => {
 
   console.log('POST ADD ===>', post);
 
-  // try {
-  //   const validCategory = new Category({
-  //     visible: category.visible,
-  //     name: category.name,
-  //     slug: category.slug,
-  //     description: category.description,
-  //     keywords: category.keywords,
-  //     sort: category.sort,
-  //     user: category.user,
-  //   });
+  try {
+    const validPost = new Post({
+      visible: post.visible,
+      title: post.title,
+      slug: post.slug,
+      description: post.description,
+      keywords: post.keywords,
+      seopreview: post.seopreview,
+      preview: post.preview,
+      text: post.text,
+      category: post.category,
+      user: post.user,
+      sort: post.sort,
+      thumbnail: post.thumbnail,
+    });
 
-  //   const res = await validCategory.save();
-  //   console.log('res', res);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // res.status(200).send({
-  //   message: ['Категория создана успешно!'],
-  // });
+    const res = await validPost.save();
+    console.log('res', res);
+  } catch (error) {
+    console.log(error);
+  }
+  res.status(200).send({
+    message: ['Миниатюра успешно загружена на сервер в папку article/thumbnail!'],
+  });
 };
 // end Page admin add article
 
