@@ -3,6 +3,11 @@ const moment = require('moment');
 const diskStorage = require('../utils/diskStorage');
 const Sharp = require('sharp');
 
+/**
+ * Function upload files
+ * @param {String} url
+ * @return {Object}
+ */
 module.exports.upload = (url) => {
   const storage = diskStorage({
     destination(req, file, cb) {
