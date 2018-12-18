@@ -51,10 +51,6 @@ const PostSchema = new Schema({
     type: String,
     default: '',
   },
-  isThumbnail: {
-    type: Boolean,
-    default: true,
-  },
 }, {
   timestamps: {
     createdAt: 'created_at',

@@ -12157,31 +12157,13 @@ var App = function () {
                   case 0:
                     e.preventDefault();
                     formEntries = new FormData(this);
-
-                    if (this.file) {
-                      formEntries.append('isThumbnail', true);
-                    } else {
-                      formEntries.append('isThumbnail', false);
-                    }
-                    // formEntries.append('visible', this.visible.value);
-                    // formEntries.append('title', this.title.value);
-                    // formEntries.append('slug', this.slug.value);
-                    // formEntries.append('description', this.description.value);
-                    // formEntries.append('keywords', this.keywords.value);
-                    // formEntries.append('seopreview', this.seopreview.value);
-                    // formEntries.append('preview', this.preview.value);
-                    // formEntries.append('text', this.text.value);
-                    // formEntries.append('category', this.category.value);
-                    // formEntries.append('sort', this.sort.value);
-                    // formEntries.append('thumbnail', this.file);
-                    console.log(this);
-                    _context2.next = 6;
+                    _context2.next = 4;
                     return fetch(addUrl, {
                       method: 'post',
                       body: formEntries
                     });
 
-                  case 6:
+                  case 4:
                   case 'end':
                     return _context2.stop();
                 }

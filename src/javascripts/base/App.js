@@ -57,23 +57,6 @@ class App {
       el.addEventListener('submit', async function(e) {
         e.preventDefault();
         const formEntries = new FormData(this);
-        if (this.file) {
-          formEntries.append('isThumbnail', true);
-        } else {
-          formEntries.append('isThumbnail', false);
-        }
-        // formEntries.append('visible', this.visible.value);
-        // formEntries.append('title', this.title.value);
-        // formEntries.append('slug', this.slug.value);
-        // formEntries.append('description', this.description.value);
-        // formEntries.append('keywords', this.keywords.value);
-        // formEntries.append('seopreview', this.seopreview.value);
-        // formEntries.append('preview', this.preview.value);
-        // formEntries.append('text', this.text.value);
-        // formEntries.append('category', this.category.value);
-        // formEntries.append('sort', this.sort.value);
-        // formEntries.append('thumbnail', this.file);
-        console.log(this);
         await fetch(addUrl, {
           method: 'post',
           body: formEntries,
