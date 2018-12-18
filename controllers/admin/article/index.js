@@ -124,22 +124,39 @@ module.exports.updatePost = (req, res) => {
 
 
 // begin Page admin list article
-module.exports.listPostPage = (req, res) => {
-  const nickname = req.session.nickname;
-  const userId = req.session.userId;
-  const role = req.session.role;
+module.exports.listPostPage = async (req, res) => {
+  // try {
+  //   const perPage = 5;
+  //   const cnt = await Article
+  //       .find({}).count();
+  //   const page = +req.params.page || 1;
+  //   const articles = await Article
+  //       .find({})
+  //       .skip((perPage * page) - perPage)
+  //       .limit(+perPage);
+  //   res.status(200).json({
+  //     articles,
+  //     count: cnt,
+  //     current: page,
+  //     pages: Math.ceil(cnt / perPage),
+  //   });
+  // } catch (error) {
+  //   errorHandler(res, error);
+  // }
 
-  res.render('admin/article/list', {
-    title: 'Административная панель - все статеи',
-    meta: {
-      description: 'Административная панель - все статеи',
-      keywords: 'Административная панель - все статеи',
-    },
-    user: {
-      userId,
-      nickname,
-      role,
-    },
-  });
+  try {
+    const posts = await Post.find();
+    console.log(posts);
+    res.render('admin/article/list', {
+      title: 'Административная панель - все статьи',
+      meta: {
+        description: 'Административная панель - все статьи',
+        keywords: 'Административная панель - все статьи',
+      },
+      posts,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 // end Page admin list article
