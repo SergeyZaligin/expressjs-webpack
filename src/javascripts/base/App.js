@@ -57,6 +57,11 @@ class App {
       el.addEventListener('submit', async function(e) {
         e.preventDefault();
         const formEntries = new FormData(this);
+        if (this.file) {
+          formEntries.append('isThumbnail', true);
+        } else {
+          formEntries.append('isThumbnail', false);
+        }
         // formEntries.append('visible', this.visible.value);
         // formEntries.append('title', this.title.value);
         // formEntries.append('slug', this.slug.value);

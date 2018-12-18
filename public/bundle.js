@@ -12157,6 +12157,12 @@ var App = function () {
                   case 0:
                     e.preventDefault();
                     formEntries = new FormData(this);
+
+                    if (this.file) {
+                      formEntries.append('isThumbnail', true);
+                    } else {
+                      formEntries.append('isThumbnail', false);
+                    }
                     // formEntries.append('visible', this.visible.value);
                     // formEntries.append('title', this.title.value);
                     // formEntries.append('slug', this.slug.value);
@@ -12168,15 +12174,14 @@ var App = function () {
                     // formEntries.append('category', this.category.value);
                     // formEntries.append('sort', this.sort.value);
                     // formEntries.append('thumbnail', this.file);
-
                     console.log(this);
-                    _context2.next = 5;
+                    _context2.next = 6;
                     return fetch(addUrl, {
                       method: 'post',
                       body: formEntries
                     });
 
-                  case 5:
+                  case 6:
                   case 'end':
                     return _context2.stop();
                 }

@@ -45,7 +45,7 @@ module.exports.addPost = async (req, res) => {
   const user = req.session.userId;
   const sort = parseInt(req.body.sort);
   const thumbnail = req.file ? req.file.path : '';
-  console.log('PATH', req.body);
+  // console.log('PATH', req.body);
   let isThumbnail = req.body.isThumbnail;
 
   if (thumbnail) {

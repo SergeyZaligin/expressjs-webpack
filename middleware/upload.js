@@ -5,6 +5,7 @@ const Sharp = require('sharp');
 
 const storage = diskStorage({
   destination(req, file, cb) {
+    console.log('UPLOAD IMG', req.body);
     if (req.body.isThumbnail) {
       cb(null, 'uploads/article/thumbnail/');
     } else {
@@ -17,8 +18,7 @@ const storage = diskStorage({
   },
   sharp(req, file, cb) {
     const resizer = Sharp()
-        .max()
-        .withoutEnlargement()
+        .resize({ fit: 'inside', withoutEnlargement: true })
         .toFormat('jpg')
         .jpeg({
           quality: 40,
