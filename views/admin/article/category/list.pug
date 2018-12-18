@@ -3,5 +3,9 @@ extends ../../layout
 block content
   div.container
     h1= title
-    each item in categories
-      p=item.name
+    table(class="admin-category-list")
+      tr
+        th Название категории
+      each item in categories
+        tr
+          td=item.name

@@ -3,9 +3,9 @@ extends ../layout
 block content
   div.container
     h1= title
-    each item in posts
-      table(class="admin-article-list")
-        tr
-          th Название статьи
+    table(class="admin-post-list")
+      tr
+        th Название статьи
+      each item in posts
         tr
           td=item.title
