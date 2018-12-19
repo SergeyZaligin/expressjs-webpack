@@ -12,7 +12,7 @@ const guardRouter = require('../middleware/guardRouter');
 router.get('/', guardRouter.guardAdminRoutes, controller.index);
 
 // Article
-router.get('/post/list',
+router.get('/post/list/:page',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.listPostPage
 );
