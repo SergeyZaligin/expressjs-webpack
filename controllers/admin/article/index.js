@@ -129,7 +129,11 @@ module.exports.listPostPage = async (req, res) => {
     const perPage = 4;
     const cnt = await Post
         .find({}).count();
-    const page = +req.params.page || 1;
+    let page = +req.params.page || 1;
+    const pages = Math.ceil(cnt / perPage);
+    if (page > pages) {
+      page = pages;
+    }
     const posts = await Post
         .find({})
         .skip((perPage * page) - perPage)
@@ -143,7 +147,7 @@ module.exports.listPostPage = async (req, res) => {
       posts,
       count: cnt,
       current: page,
-      pages: Math.ceil(cnt / perPage),
+      pages,
     });
   } catch (error) {
     console.log(error);
