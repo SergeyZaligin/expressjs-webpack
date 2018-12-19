@@ -128,8 +128,16 @@ module.exports.listPostPage = async (req, res) => {
   try {
     const perPage = 4;
     const cnt = await Post
-        .find({}).count();
-    let page = +req.params.page || 1;
+        .find({}).countDocuments();
+    const paramsPage = +req.params.page;
+    if (!req.params) {
+      console.log('NOT PARAMS!!!');
+    }
+    console.log('req.params', req.params);
+    let page = paramsPage || 1;
+    if (page <= 0) {
+      page = 1;
+    }
     const pages = Math.ceil(cnt / perPage);
     if (page > pages) {
       page = pages;
