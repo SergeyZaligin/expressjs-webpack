@@ -130,7 +130,7 @@ module.exports.listPostPage = async (req, res) => {
     const cnt = await Post
         .find({}).countDocuments();
     const paramsPage = +req.params.page;
-    if (!req.params) {
+    if (req.params['0'] === '' || !req.params.length) {
       console.log('NOT PARAMS!!!');
     }
     console.log('req.params', req.params);

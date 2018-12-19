@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({strict: true});
 const upload = require('../middleware/upload');
 
 const controller = require('../controllers/admin');
@@ -12,7 +12,7 @@ const guardRouter = require('../middleware/guardRouter');
 router.get('/', guardRouter.guardAdminRoutes, controller.index);
 
 // Article
-router.get('/post/list/*',
+router.get('/post/list/*?',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.listPostPage
 );
