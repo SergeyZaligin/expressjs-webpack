@@ -125,28 +125,15 @@ module.exports.updatePost = (req, res) => {
 
 // begin Page admin list article
 module.exports.listPostPage = async (req, res) => {
-  // try {
-  //   const perPage = 5;
-  //   const cnt = await Article
-  //       .find({}).count();
-  //   const page = +req.params.page || 1;
-  //   const articles = await Article
-  //       .find({})
-  //       .skip((perPage * page) - perPage)
-  //       .limit(+perPage);
-  //   res.status(200).json({
-  //     articles,
-  //     count: cnt,
-  //     current: page,
-  //     pages: Math.ceil(cnt / perPage),
-  //   });
-  // } catch (error) {
-  //   errorHandler(res, error);
-  // }
-
   try {
-    const posts = await Post.find();
-    console.log(posts);
+    const perPage = 4;
+    const cnt = await Post
+        .find({}).count();
+    const page = +req.params.page || 1;
+    const posts = await Post
+        .find({})
+        .skip((perPage * page) - perPage)
+        .limit(+perPage);
     res.render('admin/article/list', {
       title: 'Административная панель - все статьи',
       meta: {
@@ -154,6 +141,9 @@ module.exports.listPostPage = async (req, res) => {
         keywords: 'Административная панель - все статьи',
       },
       posts,
+      count: cnt,
+      current: page,
+      pages: Math.ceil(cnt / perPage),
     });
   } catch (error) {
     console.log(error);
