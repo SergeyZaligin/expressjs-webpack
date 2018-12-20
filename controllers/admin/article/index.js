@@ -124,16 +124,21 @@ module.exports.updatePost = (req, res) => {
 
 
 // begin Page admin list article
+module.exports.listPostPageRedirect = (req, res) => {
+  res.redirect('/post/list/', 301);
+};
+
 module.exports.listPostPage = async (req, res) => {
   try {
     const perPage = 4;
     const cnt = await Post
         .find({}).countDocuments();
     const paramsPage = +req.params.page;
+    console.log('NOT PARAMS!!!');
     if (req.params['0'] === '' || !req.params.length) {
       console.log('NOT PARAMS!!!');
     }
-    console.log('req.params', req.params);
+    console.log('req.params', req.params.page);
     let page = paramsPage || 1;
     if (page <= 0) {
       page = 1;
