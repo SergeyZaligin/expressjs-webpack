@@ -3,15 +3,15 @@ extends ../layout
 block content
   div.container
     h1= title
-    form(method="post", action="/admin/post/add", id="article-add-form")
+    form(method="put", id="article-update-form")
       div.form-control
         label(for="published") Опубликовано
         input(id="published", type="radio", name="visible", value="1")
         label(for="nopublished") Снято с публикации
         input(id="nopublished", type="radio", name="visible", value="0", checked="true")
       div.form-control
-        label(for="name") Название статьи
-        input(id="name", type="text", name="name")
+        label(for="title") Название статьи
+        input(id="title", type="text", name="title")
       div.form-control
         label(for="slug") Алиас
         input(id="slug", type="text", name="slug")
@@ -33,9 +33,14 @@ block content
       div.form-control
         label(for="category") Определить в категорию
         select(id="category", name="category")
-          option(value="0") категория
+          each item in categories
+            option(value=item._id) #{item.name}
       div.form-control
         label(for="sort") Сортировка
         input(id="sort", type="number", name="sort", value="0")
       div.form-control
-        button(type="submit") Обновить категорию
+        label(for="file") Миниатюра
+        input(id="file", type="file", name="file")
+      div.form-control
+        button(type="submit") Обновить статью
+    include ../../partial/form/upload-image

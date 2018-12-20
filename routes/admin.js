@@ -29,11 +29,11 @@ router.post('/post/add',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.addPost
 );
-router.get('/post/update',
+router.get('/post/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePostPage
 );
-router.put('/post/update',
+router.put('/post/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePost
 );
@@ -50,10 +50,10 @@ router.get('/post/category/add',
 router.post('/post/category/add',
     guardRouter.guardAdminRoutes,
     controllerAdminArticleCategory.addCategoryPost);
-router.get('/post/category/update',
+router.get('/post/category/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticleCategory.updateCategoryPostPage);
-router.put('/post/category/update',
+router.put('/post/category/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticleCategory.updateCategoryPost);
 

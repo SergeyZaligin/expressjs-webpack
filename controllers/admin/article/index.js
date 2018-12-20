@@ -98,23 +98,34 @@ module.exports.addPost = async (req, res) => {
 
 
 // begin Page admin update article
-module.exports.updatePostPage = (req, res) => {
+module.exports.updatePostPage = async (req, res) => {
   const nickname = req.session.nickname;
   const userId = req.session.userId;
   const role = req.session.role;
 
-  res.render('admin/article/update', {
-    title: 'Административная панель - обновить статью',
-    meta: {
-      description: 'Административная панель - обновить статью',
-      keywords: 'Административная панель - обновить статью',
-    },
-    user: {
-      userId,
-      nickname,
-      role,
-    },
-  });
+  try {
+    const post = await Post.find({
+      _id: req.params.id,
+    });
+    const categories = await Category.find();
+    console.log(post);
+    res.render('admin/article/update', {
+      title: `Административная панель - обновить статью ${post[0].title}`,
+      meta: {
+        description: `Административная панель - обновить статью ${post[0].title}`,
+        keywords: `Административная панель - обновить статью ${post[0].title}`,
+      },
+      user: {
+        userId,
+        nickname,
+        role,
+      },
+      post,
+      categories,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports.updatePost = (req, res) => {

@@ -12,9 +12,9 @@ block content
         tr
           td=item.title
           td
-            a(href=`/admin/post/list/${item._id}`) Обновить
+            a(href=`/admin/post/update/${item._id}`) Обновить
           td
-            a(href=`/admin/post/list/${item._id}`) Удалить
+            a(href=`/admin/post/delete/${item._id}`) Удалить
     ul(class="pagination")
       -let i = 1;
       li(class="pagination__item")
