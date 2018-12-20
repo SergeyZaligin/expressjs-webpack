@@ -6,6 +6,12 @@ block content
     table(class="admin-category-list")
       tr
         th Название категории
+        th Обновить категорию
+        th Удалить категорию
       each item in categories
         tr
           td=item.name
+          td
+            a(href=`/admin/post/category/update/${item._id}`) Обновить
+          td
+            a(href=`/admin/post/category/delete/${item._id}`) Удалить
