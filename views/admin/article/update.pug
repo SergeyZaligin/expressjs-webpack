@@ -34,7 +34,10 @@ block content
         label(for="category") Определить в категорию
         select(id="category", name="category")
           each item in categories
-            option(value=item._id) #{item.name}
+            if item._id + ' ' == post[0].category + ' '
+              option(value=item._id, selected="selected") #{item.name} 
+            esle
+              option(value=item._id) #{item.name}
       div.form-control
         label(for="sort") Сортировка
         input(id="sort", type="number", name="sort", value=`${post[0].sort}`)
