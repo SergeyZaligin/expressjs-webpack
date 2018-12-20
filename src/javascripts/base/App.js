@@ -70,16 +70,16 @@ class App {
   }
 
   update() {
-    const el = document.querySelector(this.addSelector);
-    const addUrl = this.addUrl;
+    const el = document.querySelector(this.updateSelector);
+    const updateUrl = this.updateUrl;
     console.log('el', el);
-    console.log('addUrl', addUrl);
+    console.log('updateUrl', updateUrl);
     if (el) {
       el.addEventListener('submit', async function(e) {
         e.preventDefault();
         const formEntries = new FormData(this);
-        await fetch(addUrl, {
-          method: 'post',
+        await fetch(updateUrl, {
+          method: 'put',
           body: formEntries,
         });
       });

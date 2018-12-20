@@ -33,7 +33,7 @@ router.get('/post/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePostPage
 );
-router.put('/post/update/:id',
+router.put('/post/update',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePost
 );
@@ -53,7 +53,7 @@ router.post('/post/category/add',
 router.get('/post/category/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticleCategory.updateCategoryPostPage);
-router.put('/post/category/update/:id',
+router.put('/post/category/update',
     guardRouter.guardAdminRoutes,
     controllerAdminArticleCategory.updateCategoryPost);
 

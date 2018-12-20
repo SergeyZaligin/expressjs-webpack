@@ -11790,6 +11790,7 @@ var CategoryObj = new _Category2.default();
 var ArticleObj = new _Article2.default();
 CategoryObj.add();
 ArticleObj.addMultipart();
+ArticleObj.update();
 
 /***/ }),
 
@@ -12189,10 +12190,10 @@ var App = function () {
   }, {
     key: 'update',
     value: function update() {
-      var el = document.querySelector(this.addSelector);
-      var addUrl = this.addUrl;
+      var el = document.querySelector(this.updateSelector);
+      var updateUrl = this.updateUrl;
       console.log('el', el);
-      console.log('addUrl', addUrl);
+      console.log('updateUrl', updateUrl);
       if (el) {
         el.addEventListener('submit', function () {
           var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
@@ -12204,8 +12205,8 @@ var App = function () {
                     e.preventDefault();
                     formEntries = new FormData(this);
                     _context3.next = 4;
-                    return fetch(addUrl, {
-                      method: 'post',
+                    return fetch(updateUrl, {
+                      method: 'put',
                       body: formEntries
                     });
 

@@ -19,3 +19,4 @@ const CategoryObj = new Category;
 const ArticleObj = new Article;
 CategoryObj.add();
 ArticleObj.addMultipart();
+ArticleObj.update();
