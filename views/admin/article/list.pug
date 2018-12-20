@@ -9,3 +9,12 @@ block content
       each item in posts
         tr
           td=item.title
+    ul(class="pagination")
+      -let i = 1;
+      li(class="pagination__item")
+          a(href=`/admin/post/list/1`, class="pagination__link") В начало
+      while i <= pages
+        li(class="pagination__item")
+          a(href=`/admin/post/list/${i}`, class="pagination__link")=i++
+      li(class="pagination__item")
+          a(href=`/admin/post/list/${pages}`, class="pagination__link") В конец

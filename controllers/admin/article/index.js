@@ -134,7 +134,6 @@ module.exports.listPostPage = async (req, res) => {
     const cnt = await Post
         .find({}).countDocuments();
     const paramsPage = +req.params.page;
-    console.log('NOT PARAMS!!!');
     if (req.params['0'] === '' || !req.params.length) {
       console.log('NOT PARAMS!!!');
     }
