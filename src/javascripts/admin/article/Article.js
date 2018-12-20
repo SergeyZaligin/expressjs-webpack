@@ -4,7 +4,9 @@ class Article extends App {
   constructor() {
     super(
         '#article-add-form',
-        '/admin/post/add'
+        '/admin/post/add',
+        '#article-update-form',
+        '/admin/post/update'
     );
   }
 }

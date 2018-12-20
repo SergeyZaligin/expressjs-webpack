@@ -3,9 +3,11 @@ import {
 } from '../libs/jDi';
 
 class App {
-  constructor(addSelector, addUrl) {
+  constructor(addSelector = '', addUrl = '', updateSelector = '', updateUrl = '') {
     this.addSelector = addSelector;
     this.addUrl = addUrl;
+    this.updateSelector = updateSelector;
+    this.updateUrl = updateUrl;
   }
 
   //  '/admin/post/category/add'
@@ -49,6 +51,25 @@ class App {
   }
 
   addMultipart() {
+    const el = document.querySelector(this.addSelector);
+    const addUrl = this.addUrl;
+    console.log('el', el);
+    console.log('addUrl', addUrl);
+    if (el) {
+      el.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formEntries = new FormData(this);
+        await fetch(addUrl, {
+          method: 'post',
+          body: formEntries,
+        });
+      });
+    } else {
+      return;
+    }
+  }
+
+  update() {
     const el = document.querySelector(this.addSelector);
     const addUrl = this.addUrl;
     console.log('el', el);

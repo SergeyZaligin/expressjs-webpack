@@ -3,7 +3,7 @@ extends ../layout
 block content
   div.container
     h1= title
-    form(method="put", id="article-update-form")
+    form(method="post", id="article-update-form")
       div.form-control
         label(for="published") Опубликовано
         input(id="published", type="radio", name="visible", value="1")

@@ -11825,7 +11825,7 @@ var Article = function (_App) {
   function Article() {
     _classCallCheck(this, Article);
 
-    return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, '#article-add-form', '/admin/post/add'));
+    return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, '#article-add-form', '/admin/post/add', '#article-update-form', '/admin/post/update'));
   }
 
   return Article;
@@ -12059,11 +12059,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var App = function () {
-  function App(addSelector, addUrl) {
+  function App() {
+    var addSelector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var addUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+    var updateSelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+    var updateUrl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+
     _classCallCheck(this, App);
 
     this.addSelector = addSelector;
     this.addUrl = addUrl;
+    this.updateSelector = updateSelector;
+    this.updateUrl = updateUrl;
   }
 
   //  '/admin/post/category/add'
@@ -12122,7 +12129,7 @@ var App = function () {
             }, _callee, this, [[2, 12]]);
           }));
 
-          return function (_x) {
+          return function (_x5) {
             return _ref.apply(this, arguments);
           };
         }()
@@ -12171,8 +12178,47 @@ var App = function () {
             }, _callee2, this);
           }));
 
-          return function (_x2) {
+          return function (_x6) {
             return _ref2.apply(this, arguments);
+          };
+        }());
+      } else {
+        return;
+      }
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      var el = document.querySelector(this.addSelector);
+      var addUrl = this.addUrl;
+      console.log('el', el);
+      console.log('addUrl', addUrl);
+      if (el) {
+        el.addEventListener('submit', function () {
+          var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
+            var formEntries;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    e.preventDefault();
+                    formEntries = new FormData(this);
+                    _context3.next = 4;
+                    return fetch(addUrl, {
+                      method: 'post',
+                      body: formEntries
+                    });
+
+                  case 4:
+                  case 'end':
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+
+          return function (_x7) {
+            return _ref3.apply(this, arguments);
           };
         }());
       } else {

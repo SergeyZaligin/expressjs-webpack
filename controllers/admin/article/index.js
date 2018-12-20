@@ -102,7 +102,7 @@ module.exports.updatePostPage = async (req, res) => {
   const nickname = req.session.nickname;
   const userId = req.session.userId;
   const role = req.session.role;
-
+  console.log('REQ BODY', req.body);
   try {
     const post = await Post.find({
       _id: req.params.id,
