@@ -33,7 +33,7 @@ router.get('/post/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePostPage
 );
-router.put('/post/update',
+router.put('/post/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePost
 );

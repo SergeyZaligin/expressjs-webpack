@@ -128,8 +128,54 @@ module.exports.updatePostPage = async (req, res) => {
   }
 };
 
-module.exports.updatePost = (req, res) => {
+module.exports.updatePost = async (req, res) => {
   console.log('UPDATE ARTICLE', req.body);
+  const visible = Boolean(req.body.visible);
+  const title = validator.escape(validator.trim(req.body.title));
+  const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));
+  const description = validator.escape(validator.trim(req.body.description));
+  const keywords = validator.escape(validator.trim(req.body.keywords));
+  const seopreview = validator.escape(req.body.seopreview);
+  const preview = validator.escape(req.body.preview);
+  const text = validator.escape(req.body.text);
+  const category = validator.escape(req.body.category);
+  const user = req.session.userId;
+  const sort = parseInt(req.body.sort);
+  let thumbnail = 'uploads/extra/no-image.png';
+
+  if (req.file) {
+    thumbnail = req.file.path;
+  }
+
+  const updated = {
+    visible,
+    title,
+    slug,
+    description,
+    keywords,
+    seopreview,
+    preview,
+    text,
+    category,
+    user,
+    sort,
+    thumbnail,
+  };
+
+  try {
+    await Post.findOneAndUpdate({
+      _id: req.params.id,
+    }, {
+      $set: updated,
+    }, {
+      new: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  res.status(200).json({
+    message: 'Статья успешно обновлена.',
+  });
 };
 // end Page admin update article
 

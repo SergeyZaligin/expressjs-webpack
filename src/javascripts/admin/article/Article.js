@@ -6,7 +6,7 @@ class Article extends App {
         '#article-add-form',
         '/admin/post/add',
         '#article-update-form',
-        '/admin/post/update'
+        `${window.location.pathname}`
     );
   }
 }
