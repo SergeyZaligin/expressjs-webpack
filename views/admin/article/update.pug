@@ -11,25 +11,25 @@ block content
         input(id="nopublished", type="radio", name="visible", value="0", checked="true")
       div.form-control
         label(for="title") Название статьи
-        input(id="title", type="text", name="title")
+        input(id="title", type="text", name="title", value=`${post[0].title}`)
       div.form-control
         label(for="slug") Алиас
         input(id="slug", type="text", name="slug")
       div.form-control
         label(for="description") Meta description
-        textarea(id="description", name="description")
+        textarea(id="description", name="description")=post[0].description
       div.form-control
         label(for="keywords") Meta keywords
-        textarea(id="keywords", name="keywords")
+        textarea(id="keywords", name="keywords")=post[0].keywords
       div.form-control
         label(for="seopreview") Seo анонс
-        textarea(id="seopreview", name="seopreview")
+        textarea(id="seopreview", name="seopreview")=post[0].seopreview
       div.form-control
         label(for="preview") Анонс
-        textarea(id="preview", name="preview")
+        textarea(id="preview", name="preview")=post[0].preview
       div.form-control
         label(for="text") Текст
-        textarea(id="text", name="text")
+        textarea(id="text", name="text")=post[0].text
       div.form-control
         label(for="category") Определить в категорию
         select(id="category", name="category")
@@ -37,7 +37,7 @@ block content
             option(value=item._id) #{item.name}
       div.form-control
         label(for="sort") Сортировка
-        input(id="sort", type="number", name="sort", value="0")
+        input(id="sort", type="number", name="sort", value=`${post[0].sort}`)
       div.form-control
         label(for="file") Миниатюра
         input(id="file", type="file", name="file")
