@@ -11,7 +11,6 @@ const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 
 const indexRouter = require('./routes/index');
-const wrtcRouter = require('./routes/wrtc');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const uploadsRouter = require('./routes/uploads');
@@ -59,7 +58,6 @@ app.use(session({
 
 
 app.use('/', indexRouter);
-app.use('/wrtc', wrtcRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/uploads', uploadsRouter);
