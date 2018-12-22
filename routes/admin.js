@@ -1,5 +1,7 @@
 const express = require('express');
-const router = express.Router({strict: true});
+const router = express.Router({
+  strict: true,
+});
 const upload = require('../middleware/upload');
 
 const controller = require('../controllers/admin');
@@ -34,6 +36,7 @@ router.get('/post/update/:id',
     controllerAdminArticle.updatePostPage
 );
 router.put('/post/update/:id',
+    upload.upload('uploads/article/thumbnail/'),
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePost
 );
