@@ -35,7 +35,7 @@ router.get('/post/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePostPage
 );
-router.put('/post/update/:id',
+router.post('/post/update/:id',
     upload.upload('uploads/article/thumbnail/'),
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePost

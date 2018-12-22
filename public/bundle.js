@@ -12205,8 +12205,8 @@ var App = function () {
                     e.preventDefault();
                     formEntries = new FormData(this);
                     _context3.next = 4;
-                    return fetch('/admin/post/update/5c1911f7e022a718e15e6e74', {
-                      method: 'put',
+                    return fetch('/admin/post/update/' + '5c1911f7e022a718e15e6e74', {
+                      method: 'POST',
                       body: formEntries
                     });
 

@@ -78,8 +78,8 @@ class App {
       el.addEventListener('submit', async function(e) {
         e.preventDefault();
         const formEntries = new FormData(this);
-        await fetch('/admin/post/update/5c1911f7e022a718e15e6e74', {
-          method: 'put',
+        await fetch('/admin/post/update/' + '5c1911f7e022a718e15e6e74', {
+          method: 'POST',
           body: formEntries,
         });
       });

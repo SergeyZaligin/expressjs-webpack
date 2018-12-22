@@ -38,7 +38,7 @@ module.exports.addPost = async (req, res) => {
   const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));
   const description = validator.escape(validator.trim(req.body.description));
   const keywords = validator.escape(validator.trim(req.body.keywords));
-  const seopreview = validator.escape(req.body.seopreview);
+  const seoPreview = validator.escape(req.body.seoPreview);
   const preview = validator.escape(req.body.preview);
   const text = validator.escape(req.body.text);
   const category = validator.escape(req.body.category);
@@ -59,7 +59,7 @@ module.exports.addPost = async (req, res) => {
     slug,
     description,
     keywords,
-    seopreview,
+    seoPreview,
     preview,
     text,
     category,
@@ -77,7 +77,7 @@ module.exports.addPost = async (req, res) => {
       slug: post.slug,
       description: post.description,
       keywords: post.keywords,
-      seopreview: post.seopreview,
+      seoPreview: post.seoPreview,
       preview: post.preview,
       text: post.text,
       category: post.category,
@@ -129,13 +129,13 @@ module.exports.updatePostPage = async (req, res) => {
 };
 
 module.exports.updatePost = async (req, res) => {
-  console.log('UPDATE ARTICLE', req.body);
+  // console.log('UPDATE ARTICLE', req.body);
   const visible = Boolean(req.body.visible);
   const title = validator.escape(validator.trim(req.body.title));
   const slug = req.body.slug ? validator.escape(validator.trim(req.body.slug)) : validator.escape(validator.trim(transliterate(req.body.title)));
   const description = validator.escape(validator.trim(req.body.description));
   const keywords = validator.escape(validator.trim(req.body.keywords));
-  const seopreview = validator.escape(req.body.seopreview);
+  const seoPreview = validator.escape(req.body.seoPreview);
   const preview = validator.escape(req.body.preview);
   const text = validator.escape(req.body.text);
   const category = validator.escape(req.body.category);
@@ -153,17 +153,16 @@ module.exports.updatePost = async (req, res) => {
     slug,
     description,
     keywords,
-    seopreview,
+    seoPreview,
     preview,
     text,
     category,
-    user,
     sort,
     thumbnail,
   };
-
+  console.log('updated', updated);
   try {
-    await Post.findOneAndUpdate({
+    await Post.findByIdAndUpdate({
       _id: req.params.id,
     }, {
       $set: updated,
@@ -171,9 +170,9 @@ module.exports.updatePost = async (req, res) => {
       new: true,
       useFindAndModify: false,
     });
-    // res.status(200).json({
-    //   message: 'Статья успешно обновлена.',
-    // });
+    res.status(200).json({
+      message: 'Статья успешно обновлена.',
+    });
   } catch (error) {
     console.log(error);
   }
