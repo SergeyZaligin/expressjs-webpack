@@ -108,7 +108,6 @@ module.exports.updatePostPage = async (req, res) => {
       _id: req.params.id,
     });
     const categories = await Category.find();
-    console.log(post);
     res.render('admin/article/update', {
       title: `Административная панель - обновить статью ${post[0].title}`,
       meta: {

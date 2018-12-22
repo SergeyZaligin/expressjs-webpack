@@ -11826,7 +11826,7 @@ var Article = function (_App) {
   function Article() {
     _classCallCheck(this, Article);
 
-    return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, '#article-add-form', '/admin/post/add', '#article-update-form', '/admin/post/update/5c1911f7e022a718e15e6e74'));
+    return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, '#article-add-form', '/admin/post/add', '#article-update-form', document.location.pathname));
   }
 
   return Article;
@@ -12205,7 +12205,7 @@ var App = function () {
                     e.preventDefault();
                     formEntries = new FormData(this);
                     _context3.next = 4;
-                    return fetch('/admin/post/update/' + '5c1911f7e022a718e15e6e74', {
+                    return fetch(updateUrl, {
                       method: 'POST',
                       body: formEntries
                     });

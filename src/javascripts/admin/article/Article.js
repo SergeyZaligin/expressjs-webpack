@@ -6,7 +6,7 @@ class Article extends App {
         '#article-add-form',
         '/admin/post/add',
         '#article-update-form',
-        '/admin/post/update/5c1911f7e022a718e15e6e74'
+        document.location.pathname
     );
   }
 }
