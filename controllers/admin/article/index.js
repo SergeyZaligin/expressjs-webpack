@@ -170,12 +170,12 @@ module.exports.updatePost = async (req, res) => {
       new: true,
       useFindAndModify: false,
     });
-    res.status(200).json({
-      message: 'Статья успешно обновлена.',
-    });
   } catch (error) {
     console.log(error);
   }
+  res.status(200).json({
+    message: 'Статья успешно обновлена.',
+  });
 };
 // end Page admin update article
 
