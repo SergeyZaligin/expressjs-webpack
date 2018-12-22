@@ -1,4 +1,5 @@
 import './stylesheets/main.scss';
+import './javascripts/wrtc/wrtc';
 import signup from './javascripts/auth/signup';
 import login from './javascripts/auth/login';
 import uploadImage from './javascripts/partial/form/upload-image';
