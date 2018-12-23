@@ -178,6 +178,19 @@ module.exports.updatePost = async (req, res) => {
 };
 // end Page admin update article
 
+module.exports.deletePost = async (req, res) => {
+  console.log('delete article', req.body);
+  // try {
+  //   await Post.findByIdAndRemove({
+  //     _id: req.body.id,
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  res.status(200).json({
+    message: 'Статья успешно deleted.',
+  });
+};
 
 // begin Page admin list article
 module.exports.listPostPageRedirect = (req, res) => {

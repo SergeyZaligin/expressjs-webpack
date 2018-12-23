@@ -11791,6 +11791,7 @@ var ArticleObj = new _Article2.default();
 CategoryObj.add();
 ArticleObj.addMultipart();
 ArticleObj.update();
+ArticleObj.delete();
 
 /***/ }),
 
@@ -11826,7 +11827,7 @@ var Article = function (_App) {
   function Article() {
     _classCallCheck(this, Article);
 
-    return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, '#article-add-form', '/admin/post/add', '#article-update-form', document.location.pathname));
+    return _possibleConstructorReturn(this, (Article.__proto__ || Object.getPrototypeOf(Article)).call(this, '#article-add-form', '/admin/post/add', '#article-update-form', document.location.pathname, '.post-del', '/admin/post/list'));
   }
 
   return Article;
@@ -12065,6 +12066,8 @@ var App = function () {
     var addUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
     var updateSelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
     var updateUrl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+    var deleteSelector = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
+    var deleteUrl = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '';
 
     _classCallCheck(this, App);
 
@@ -12072,6 +12075,8 @@ var App = function () {
     this.addUrl = addUrl;
     this.updateSelector = updateSelector;
     this.updateUrl = updateUrl;
+    this.deleteSelector = deleteSelector;
+    this.deleteUrl = deleteUrl;
   }
 
   //  '/admin/post/category/add'
@@ -12130,7 +12135,7 @@ var App = function () {
             }, _callee, this, [[2, 12]]);
           }));
 
-          return function (_x5) {
+          return function (_x7) {
             return _ref.apply(this, arguments);
           };
         }()
@@ -12179,7 +12184,7 @@ var App = function () {
             }, _callee2, this);
           }));
 
-          return function (_x6) {
+          return function (_x8) {
             return _ref2.apply(this, arguments);
           };
         }());
@@ -12218,10 +12223,68 @@ var App = function () {
             }, _callee3, this);
           }));
 
-          return function (_x7) {
+          return function (_x9) {
             return _ref3.apply(this, arguments);
           };
         }());
+      } else {
+        return;
+      }
+    }
+  }, {
+    key: 'delete',
+    value: function _delete() {
+      var el = document.querySelectorAll(this.deleteSelector);
+      var deleteUrl = this.deleteUrl;
+      console.log('el', el);
+      console.log('deleteUrl', deleteUrl);
+      if (el) {
+        el.forEach(function (item) {
+          item.addEventListener('submit', function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(e) {
+              var response, json;
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
+                      e.preventDefault();
+                      _context4.next = 3;
+                      return fetch(deleteUrl, {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json, text/plain, */*',
+                          'Content-Type': 'application/json'
+                        },
+                        credentials: 'same-origin',
+                        body: (0, _jDi.serialize)(this)
+                      });
+
+                    case 3:
+                      response = _context4.sent;
+
+                      console.log('rem el', this.parentNode.parentNode);
+                      this.parentNode.parentNode.remove();
+                      _context4.next = 8;
+                      return response.json();
+
+                    case 8:
+                      json = _context4.sent;
+
+                      console.log(json);
+
+                    case 10:
+                    case 'end':
+                      return _context4.stop();
+                  }
+                }
+              }, _callee4, this);
+            }));
+
+            return function (_x10) {
+              return _ref4.apply(this, arguments);
+            };
+          }());
+        });
       } else {
         return;
       }

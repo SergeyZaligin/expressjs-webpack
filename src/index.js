@@ -20,3 +20,4 @@ const ArticleObj = new Article;
 CategoryObj.add();
 ArticleObj.addMultipart();
 ArticleObj.update();
+ArticleObj.delete();

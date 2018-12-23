@@ -14,7 +14,9 @@ block content
           td
             a(href=`/admin/post/update/${item._id}`) Обновить
           td
-            a(href=`/admin/post/delete/${item._id}`) Удалить
+            form(method="post", class="post-del")
+              input(type="hidden", name="id", value=`${item._id}`)
+              button(type="submit") Удалить
     ul(class="pagination")
       -let i = 1;
       li(class="pagination__item")

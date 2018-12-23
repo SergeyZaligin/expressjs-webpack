@@ -40,7 +40,10 @@ router.post('/post/update/:id',
     guardRouter.guardAdminRoutes,
     controllerAdminArticle.updatePost
 );
-
+router.post('/post/list',
+    guardRouter.guardAdminRoutes,
+    controllerAdminArticle.deletePost
+);
 // Article category
 router.get('/post/category/list',
     guardRouter.guardAdminRoutes,
