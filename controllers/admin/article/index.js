@@ -180,13 +180,13 @@ module.exports.updatePost = async (req, res) => {
 
 module.exports.deletePost = async (req, res) => {
   console.log('delete article', req.body);
-  // try {
-  //   await Post.findByIdAndRemove({
-  //     _id: req.body.id,
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  try {
+    await Post.findByIdAndRemove({
+      _id: req.body.id,
+    });
+  } catch (error) {
+    console.log(error);
+  }
   res.status(200).json({
     message: 'Статья успешно deleted.',
   });
